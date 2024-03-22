@@ -1,0 +1,139 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+}
+header {
+    display: flex;
+    flex-direction: row;
+    gap: 70%;
+    justify-content: center;
+    padding-bottom: 50px;
+    border: 1px #c2c4c8 solid;
+}
+
+#page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+#vue-produit {
+    background-color: #edece9;
+    height: 872px;
+    width: 1013px;
+}
+#vue-options  {
+    height: 872px;
+    width: 428px;
+    padding: 120px 20px 80px 20px;
+}
+
+img {
+    margin: 7.5%;
+    width: 75%;
+}
+}
+
+#modeles img {
+    width: 30%;
+    margin-top: -3px;
+    margin-bottom: 1%;
+}
+
+#poignee img {
+    width: 30%;
+    margin: 5%;
+}
+
+.colors {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 0 0 30px;
+    margin-bottom: 30px;
+}
+
+.colors li {
+    width: 20px;
+    height: 20px;
+    
+    display: inline block;
+    margin-right: 37px;
+    cursor: pointer;
+    border-radius: 100px;
+}
+
+.colors li.active {
+    border: 1.8px solid #ffffff;
+    transform: scale(1.5);
+    box-shadow: 0 0 0 2px #d8d4d4 ;
+}
+
+.colors li.gris {
+    background-color: #424243
+}
+
+.blanc {
+    background-color: #e2e2e1;
+}
+
+.champagne {
+    background-color: #f6da3fd0;
+}
+
+.gris clair {
+    background-color: #b1b1afd0;
+}
+
+.selectUnV {
+    border: 2px solid #d8d4d4;
+}
+
+h3 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+h4 {
+    margin-bottom: 10px;
+}
+
+#button-color button {
+    width: 30px;
+    height: 30px;
+    display: inline block;
+    margin-right: 5%;
+    margin-left: 5%;
+    cursor: pointer;
+    border-radius: 100px;
+    
+}
+
+#RALSeptMilleSeize {
+    background-color: #353c44;
+}
+
+#RALNeufMilleSeize {
+    background-color: #ffffff;
+}
+
+#Champ {
+    background-color: #eced81;
+}
+
+
+#boutonsModeles {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 50%;
+    margin-bottom: 20px;
+}
+
+#boutonsModeles button {
+    width: 50px;
+    cursor: pointer;
+    border-radius: 5px;
+}
