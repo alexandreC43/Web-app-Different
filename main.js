@@ -1,5 +1,7 @@
 const Rendu3D = ["Images/1V 7016 P1.png","Images/1V 7016 P2.png", "Images/1V 9016 P1.png", "Images/1V 9016 P2.png", "Images/1V champ P1.png", "Images/1V champ P2.png", "Images/2V 7016 P1.png", "Images/2V 7016 P2.png","Images/2V 9016 P1.png","Images/2V 9016 P1.png","Images/2V champ P1.png","Images/2V champ P2.png"];
 
+
+
 function afficherImage(index) {
     const imageAffichee = document.getElementById("img-produit")
     const titreColoris = document.getElementById("titreColoris")
@@ -29,3 +31,4 @@ function modifierTexte1V2V () {
 }
 }
 modifierTexte1V2V
+
