@@ -18,56 +18,37 @@ header {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin: auto;
+    /* margin: auto; */
 
 #vue-produit {
     background-color: #edece9;
-    height: 872px;
-    width: 1013px;
-    margin: auto;
+    height: 60%;
+    width: 800px;
 }
 
 #imageAffichee {
-    margin-left: 10%;
-    margin-top : 10%;
-    width: 100%;
+    margin: auto;
 }
 
 #vue-options  {
     height: 872px;
-    width: 380px;
-    padding: 120px 20px 80px;
+    width: 15%;
+    padding: 20% 20px 80px;
+    margin-top: -15%;
+    
 }
 
 img {
-    
     width: 70%;
     transition: transform .1s;
 }
+
+#imgProduit{
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 5%;
 }
 
-.imageAffichee {
-    width: 200px;
-    overflow: hidden;
-    }
-
-.imageAffichee img{
-    width: 100%;
-    transition: transform .5s;
-    }
-
-img:hover{
-    -ms-transform: scale(2) translate(30px); /* IE 9 */
-    -webkit-transform: scale(2) translate(30px); /* Safari 3-8 */
-    transform: scale(2) translate(30px);
-    }
-
-#modeles img {
-    width: 30%;
-    margin-top: -3px;
-    margin-bottom: 1%;
-    border: 1px solid #d8d4d4;
-}
 
 #poignee img {
     width: 30%;
@@ -84,16 +65,6 @@ img:hover{
     margin-bottom: 30px;
 }
 
-.colors li {
-    width: 20px;
-    height: 20px;
-    display: inline block;
-    margin-right: 37px;
-    cursor: pointer;
-    border-radius: 100px;
-}
-
-
 .blanc {
     background-color: #e2e2e1;
 }
@@ -106,48 +77,47 @@ img:hover{
     background-color: #b1b1afd0;
 }
 
-
-#vue-options {
-    margin-top: -10%;
-}
-
-h3 {
+h3, h2, h4 {
+    display: flex;
     margin-top: 30px;
     margin-bottom: 10px;
+    justify-content: center;
+    text-align: center;
 }
 
-h4 {
-    margin-bottom: 10px;
+p {
+    text-align: center;
+    font-size: small;
 }
 
-#button-color button {
+#buttonColor button {
     width: 30px;
     height: 30px;
     display: inline block;
-    margin-right: 5%;
-    margin-left: 5%;
     cursor: pointer;
     border-radius: 100px;
     margin-bottom: 10px;
+    margin-right: 5%;
+    margin-left: 10%;
     
 }
 
-#button-color-deuxV button {
+#buttonColorDeuxV button {
     width: 30px;
     height: 30px;
     display: inline block;
     margin-right: 5%;
-    margin-left: 5%;
+    margin-left: 10%;
     cursor: pointer;
     border-radius: 100px;
     margin-bottom: 10px;
 }
 
-#RALSeptMilleSeize, #RALSeptMilleSeizeDeuxV {
+#RAL7016, #RALSeptMilleSeizeDeuxV {
     background-color: #353c44;
 }
 
-#RALNeufMilleSeize, #RALNeufMilleSeizeDeuxV {
+#RAL9016, #RALNeufMilleSeizeDeuxV {
     background-color: #ffffff;
 }
 
@@ -164,28 +134,107 @@ h4 {
     margin-left: 10%;
 }
 
-#boutonsModeles button {
-    width: 50px;
-    cursor: pointer;
-    border-radius: 5px;
-}
+
 
 .active {
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-    border: 2px solid #ff3d00;
+    scale: 110%;
+    -webkit-box-shadow: 0px 0px 1px 2px #f20707;
+    -moz-box-shadow: 0px 0px 1px 2px #f20707;
+    box-shadow: 0px 0px 1px 2px #f20707;
 }
-
-#boutonsPoigneesUnV7016, #boutonsPoigneesUnV9016, #boutonsPoigneesUnVChamp, #boutonsPoigneesDeuxV7016, #boutonsPoigneesDeuxV9016, #boutonsPoigneesDeuxVChamp  {
-    display: flex;
-    flex-direction: row;
-    justify-content:flex-start;
-    margin-bottom: 10px;
-    margin-left: 8%;
-
     button {
         padding: 2px;
         cursor: pointer;
-    }
+}
 
-   
-} 
+#typeOuverture {
+        margin: auto;
+        margin-top: 50%;
+        margin-bottom: 50%;
+
+
+}
+#ouvertures {
+        display: flex;
+        justify-content: center;
+}
+
+#ouvertures img {
+        width: 40%;
+        margin-top: -3px;
+        margin-bottom: 1%;
+        border: 1px solid #d8d4d4;
+        margin: auto;
+        cursor: pointer;
+}
+
+#typeModele {
+        margin: auto;
+        margin-top: 50%;
+        margin-bottom: 50%;
+
+}
+
+#modelesPrefal1V, #modelesTechnal1V, 
+#modelesPrefal2V, #modelesTechnal2V {
+        display: flex;
+        justify-content: center;
+}
+
+#modelesPrefal1V img, #modelesTechnal1V img, 
+#modelesTechnal2V img, #modelesPrefal2V img {
+        width: 40%;
+        margin-top: -3px;
+        margin-bottom: 1%;
+        border: 1px solid #d8d4d4;
+        margin: auto;
+        cursor: pointer;
+}
+
+#typeFinition {
+        margin: auto;
+        margin-top: 50%;
+        margin-bottom: 50%;
+}
+
+#typePoignee {
+        margin: auto;
+        margin-top: 50%;
+        margin-bottom: 50%;
+    
+        
+}
+
+#poignees1V7016, #poignees1V9016, #poignees1VChamp, 
+#poignees2V7016, #poignees2V9016, #poignees2VChamp {
+    display: flex;
+    justify-content: center;
+}
+
+#poignees1V7016 img, #poignees1V9016 img, #poignees1VChamp img,
+#poignees2V7016 img, #poignees2V9016 img, #poignees2VChamp img {
+    width: 40%;
+    margin-top: -3px;
+    margin-bottom: 1%;
+    border: 1px solid #d8d4d4;
+    margin: auto;
+    cursor: pointer;
+    
+}
+
+#fleches {
+    display: flex;
+    flex-direction: row;
+    gap: 83%;
+    cursor: pointer;
+    
+}
+
+#fleches img {
+    width: 4%;
+    margin-top: -20%;
+    margin-bottom: 30%;
+    margin-left: 3%;
+}
+
+}
