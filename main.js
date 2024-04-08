@@ -4,39 +4,66 @@ const select2V = document.querySelector(".select2V");
 const divButtonColor = document.getElementById("buttonColor");
 const divButtonColorDeuxV = document.getElementById("buttonColorDeuxV");
 const titreOuverture = document.getElementById("titreOuverture");
+const titreModele = document.getElementById("titreModele");
 const modelesPrefal1V = document.getElementById("modelesPrefal1V")
 const modelesPrefal2V = document.getElementById("modelesPrefal2V")
 const modelesTechnal1V = document.getElementById("modelesTechnal1V")
 const modelesTechnal2V = document.getElementById("modelesTechnal2V")
 const FYM1V = document.querySelector(".FYM1V");
 const FYM2V = document.querySelector(".FYM2V")
+const FYA1V = document.querySelector(".FYA1V")
+const FYA2V = document.querySelector(".FYA2V")
+const visible1V = document.querySelector(".visible1V")
+const visible2V = document.querySelector(".visible2V")
+const cache1V = document.querySelector(".cache1V")
+const cache2V = document.querySelector(".cache2V")
 const RAL7016 = document.getElementById("RAL7016")
 const RAL9016 = document.getElementById("RAL9016")
+const Champ = document.getElementById("Champ")
+const RAL7035 = document.getElementById("RAL7035")
+const argent = document.getElementById("argent")
+const titreFinition = document.getElementById("titreFinition")
+const imgProduit = document.getElementById("imgProduit");
+const imgProduitFace = document.getElementById("imgProduitFace")
+const imgProduitPoignee = document.getElementById("imgProduitPoignee")
+const imgProduitArriere = document.getElementById("imgProduitArriere")
+const flecheG = document.getElementById("flecheG")
+const flecheD = document.getElementById("flecheD")
 
 
 // Initialisation de l'application
-afficherImage("modele1VFYM", "7016", "poignee1");
+afficherImage()
 select1V.classList.add("active");
 FYM1V.classList.add("active");
 afficherElem ([modelesPrefal1V, modelesTechnal1V])
 masquerElem ([modelesPrefal2V,modelesTechnal2V])
 rendreActif (RAL7016)
-// divButtonColor.style.display = "flex";
-// divButtonColorDeuxV.style.display = "none";
+sessionStorage.setItem("cam","VueCote")
+sessionStorage.setItem("modele","modele1VFYM")
+sessionStorage.setItem("couleur","7016")
+sessionStorage.setItem("poignee","poignee1")
+console.log(imgProduit.src)
 
 
-function afficherImage(modele, coloris, poignee) {
-  // Construire le chemin de l'image en fonction des choix
-  const cheminImage = `images/modeles/${modele}/${coloris}/${poignee}.png`;
+function afficherImage() {
+    // Récupérer les valeurs depuis sessionStorage
+    const modele = sessionStorage.getItem("modele") || "modele1VFYM"; // Valeur par défaut si non présente
+    const coloris = sessionStorage.getItem("couleur") || "7016"; // Valeur par défaut si non présente
+    const poignee = sessionStorage.getItem("poignee") || "poignee1"; // Valeur par défaut si non présente
+    const camera = sessionStorage.getItem("cam") || "VueCote"; // Valeur par défaut si non présente
+    
+  
+    // Construire le chemin de l'image en fonction des choix
+    const cheminImage = `Images/modeles/${modele}/${coloris}/${poignee+camera}.png`;
+    console.log(cheminImage)
+  
+    // Mettre à jour l'attribut src de l'image avec le chemin construit
+    imgProduit.src = cheminImage;
+    imgProduit.alt = `Fenêtre - Modèle: ${modele}, Coloris: ${coloris}, Poignée: ${poignee}, Cam: ${camera}`;
+    console.log(cheminImage)
+  }
 
-  // Sélectionner la balise img où afficher l'image
-  const imgProduit = document.getElementById("imgProduit");
-
-  // Mettre à jour l'attribut src de l'image avec le chemin construit
-  imgProduit.src = cheminImage;
-  imgProduit.alt = `Fenêtre - Modèle: ${modele}, Coloris: ${coloris}, Poignée: ${poignee}`;
-}
-
+  
 function rendreActif (elem) {
   elem.classList.add("active")
 }
@@ -55,202 +82,226 @@ function masquerElem (elem) {
   elements.style.display = "none"
 } }
 
+function modifierTexte (titre, contenu) {
+  titre.textContent = contenu ;
+}
+
+// function CameraFace (img) {
+//   const modele = sessionStorage.getItem("modele") || "modele1VFYM"; // Valeur par défaut si non présente
+//   const coloris = sessionStorage.getItem("couleur") || "7016"; // Valeur par défaut si non présente
+//   const poignee = sessionStorage.getItem("poignee") || "poignee1"; // Valeur par défaut si non présente
+//   const Camera = sessionStorage.getItem("cam") || "vueface"; // Valeur par défaut si non présente
+// }
+
+// Lorsque je clique sur les images/boutons :
 
 
-// Lorsque je clique sur les boutons :
+flecheD.addEventListener("click", function () {
+    sessionStorage.setItem("cam", "VueFace");
+    afficherImage()
+});
+
+
+flecheG.addEventListener("click", function () {
+  sessionStorage.setItem("cam", "VueCote");
+  afficherImage()
+});
 
 select1V.addEventListener("click", function () {
+  sessionStorage.setItem("modele", "modele1VFYM");
   afficherImage("modele1VFYM", "7016", "poignee1");
   rendreActif(select1V)
   rendreInactif(select2V)
   afficherElem ([modelesPrefal1V, modelesTechnal1V])
   masquerElem ([modelesPrefal2V,modelesTechnal2V])
+  modifierTexte (titreOuverture, "1 vantail")
+  afficherImage();
 });
 
 select2V.addEventListener("click", function () {
-  afficherImage("modele2VFYM", "7016", "poignee1");
+  sessionStorage.setItem("modele", "modele2VFYM");
   rendreActif(select2V)
   rendreInactif(select1V)
   rendreActif(FYM2V)
   afficherElem ([modelesPrefal2V,modelesTechnal2V])
   masquerElem ([modelesPrefal1V, modelesTechnal1V])
+  modifierTexte (titreOuverture, "2 vantaux")
+  afficherImage();
   
+});
+
+FYM1V.addEventListener("click", function() {
+  sessionStorage.setItem("modele", "modele1VFYM");
+  rendreActif(FYM1V)
+  rendreInactif(FYM2V)
+  rendreInactif(FYA1V)
+  rendreInactif(FYA2V)
+  rendreInactif(visible1V)
+  rendreInactif(visible2V)
+  rendreInactif(cache1V)
+  rendreInactif(cache2V)
+  modifierTexte (titreModele, "Technal FYM")
+  afficherImage();
+
+});
+
+FYA1V.addEventListener("click", function() {
+  sessionStorage.setItem("modele", "modele1VFYA");
+  rendreActif(FYA1V)
+  rendreInactif(FYM2V)
+  rendreInactif(FYM1V)
+  rendreInactif(FYA2V)
+  rendreInactif(visible1V)
+  rendreInactif(visible2V)
+  rendreInactif(cache1V)
+  rendreInactif(cache2V)
+  modifierTexte (titreModele, "Technal FYA")
+  afficherImage();
+
+});
+
+FYM2V.addEventListener("click", function() {
+  sessionStorage.setItem("modele", "modele2VFYM");
+  rendreActif(FYM2V)
+  rendreInactif(FYM1V)
+  rendreInactif(FYA1V)
+  rendreInactif(FYA2V)
+  rendreInactif(visible1V)
+  rendreInactif(visible2V)
+  rendreInactif(cache1V)
+  rendreInactif(cache2V)
+  modifierTexte (titreModele, "Technal FYM")
+  afficherImage();
+
+});
+
+FYA2V.addEventListener("click", function() {
+  sessionStorage.setItem("modele", "modele2VFYA");
+  rendreActif(FYA2V)
+  rendreInactif(FYM2V)
+  rendreInactif(FYM1V)
+  rendreInactif(FYA1V)
+  rendreInactif(visible1V)
+  rendreInactif(visible2V)
+  rendreInactif(cache1V)
+  rendreInactif(cache2V)
+  modifierTexte (titreModele, "Technal FYA")
+  afficherImage();
+
+});
+
+visible1V.addEventListener("click", function() {
+  sessionStorage.setItem("modele", "modele2VFYA");
+  rendreActif(visible1V)
+  rendreInactif(FYM2V)
+  rendreInactif(FYM1V)
+  rendreInactif(FYA1V)
+  rendreInactif(FYA2V)
+  rendreInactif(visible2V)
+  rendreInactif(cache1V)
+  rendreInactif(cache2V)
+  modifierTexte (titreModele, "Prefal Visible")
+  afficherImage();
+
+});
+
+visible2V.addEventListener("click", function() {
+  sessionStorage.setItem("modele", "modele2VFYA");
+  rendreActif(visible2V)
+  rendreInactif(FYM2V)
+  rendreInactif(FYM1V)
+  rendreInactif(FYA1V)
+  rendreInactif(FYA2V)
+  rendreInactif(visible1V)
+  rendreInactif(cache1V)
+  rendreInactif(cache2V)
+  modifierTexte (titreModele, "Prefal Visible")
+  afficherImage();
+
+});
+
+cache1V.addEventListener("click", function() {
+  sessionStorage.setItem("modele", "modele2VFYA");
+  rendreActif(cache1V)
+  rendreInactif(FYM2V)
+  rendreInactif(FYM1V)
+  rendreInactif(FYA1V)
+  rendreInactif(FYA2V)
+  rendreInactif(visible2V)
+  rendreInactif(visible1V)
+  rendreInactif(cache2V)
+  modifierTexte (titreModele, "Prefal Caché")
+  afficherImage();
+
+});
+
+cache2V.addEventListener("click", function() {
+  sessionStorage.setItem("modele", "modele2VFYA");
+  rendreActif(cache2V)
+  rendreInactif(FYM2V)
+  rendreInactif(FYM1V)
+  rendreInactif(FYA1V)
+  rendreInactif(FYA2V)
+  rendreInactif(visible2V)
+  rendreInactif(visible1V)
+  rendreInactif(cache1V)
+  modifierTexte (titreModele, "Prefal Caché")
+  afficherImage();
+
 });
 
 
 RAL7016.addEventListener("click", function () {
-  if (select1V.classList.contains("active") && FYM1V.classList.contains("active")) {
-  afficherImage("modele1VFYM", "7016", "poignee1");
-  } else if (select2V.classList.contains("active") && FYM1V.classList.contains("active")) {
-  afficherImage("modele2VFYM", "7016", "poignee1");
-  }
+  sessionStorage.setItem("couleur", "7016");
+  afficherImage();
   rendreActif(RAL7016)
   rendreInactif(RAL9016)
+  rendreInactif(Champ)
+  rendreInactif(RAL7035)
+  rendreInactif(argent)
+  modifierTexte (titreFinition, "RAL 7016")
 });
 
 RAL9016.addEventListener("click", function () {
-  if (select1V.classList.contains("active") && FYM1V.classList.contains("active")) {
-  afficherImage("modele1VFYM", "9016", "poignee1");
-  } else if (select2V.classList.contains("active") && FYM1V.classList.contains("active")) {
-  afficherImage("modele2VFYM", "9016", "poignee1");
-  }
+  sessionStorage.setItem("couleur", "9016")
   rendreActif(RAL9016)
   rendreInactif(RAL7016)
+  rendreInactif(Champ)
+  rendreInactif(RAL7035)
+  rendreInactif(argent)
+  modifierTexte (titreFinition, "RAL 9016")
+  afficherImage();
 });
 
-// function afficherFinition (ouverture, modele) {
-//   if (ouverture.classList === "active" && modele.classList === "active") {
-//     afficherImage
-//   }
-// }
+Champ.addEventListener("click", function () {
+  sessionStorage.setItem("couleur", "champagne")
+  rendreActif(Champ)
+  rendreInactif(RAL7016)
+  rendreInactif(RAL9016)
+  rendreInactif(RAL7035)
+  rendreInactif(argent)
+  modifierTexte (titreFinition, "Champagne anodisé")
+  afficherImage();
+});
 
-  
+RAL7035.addEventListener("click", function () {
+  sessionStorage.setItem("couleur", "7035")
+  rendreActif(RAL7035)
+  rendreInactif(RAL7016)
+  rendreInactif(Champ)
+  rendreInactif(argent)
+  rendreInactif(RAL9016)
+  modifierTexte (titreFinition, "RAL 7035")
+  afficherImage();
+});
 
-  
-//   // Event listeners pour les boutons de modèle
-//   boutonUnVantail.addEventListener("click", function() {
-//     afficherImage(0);
-//     boutonUnVantail.classList.add("active");
-//     boutonDeuxVantaux.classList.remove("active");
-//     divButtonColor.style.display = "block";
-//     divButtonColorDeuxV.style.display = "none";
-//     titreOuverture.textContent = "1 Vantail";
-  
-//     // Afficher/Masquer les divs de poignées selon le modèle
-//     divBoutonsPoigneesUnV7016.style.display = "block";
-//     divBoutonsPoigneesUnV9016.style.display = "none";
-//     divBoutonsPoigneesUnVChamp.style.display = "none";
-//     divBoutonsPoigneesDeuxV7016.style.display = "none";
-//     divBoutonsPoigneesDeuxV9016.style.display = "none";
-//     divBoutonsPoigneesDeuxVChamp.style.display = "none";
-//   });
-  
-//   boutonDeuxVantaux.addEventListener("click", function() {
-//     afficherImage(6);
-//     boutonUnVantail.classList.remove("active");
-//     boutonDeuxVantaux.classList.add("active");
-//     divButtonColor.style.display = "none";
-//     divButtonColorDeuxV.style.display = "block";
-//     titreOuverture.textContent = "2 Vantaux";
-  
-//     // Afficher/Masquer les divs de poignées selon le modèle
-//     divBoutonsPoigneesUnV7016.style.display = "none";
-//     divBoutonsPoigneesUnV9016.style.display = "none";
-//     divBoutonsPoigneesUnVChamp.style.display = "none";
-//     divBoutonsPoigneesDeuxV7016.style.display = "block";
-//     divBoutonsPoigneesDeuxV9016.style.display = "none";
-//     divBoutonsPoigneesDeuxVChamp.style.display = "none";
-//   });
-  
-//   function afficherImage(index) {
-//     const imageAffichee = document.getElementById("img-produit");
-//     const titreColoris = document.getElementById("titreColoris");
-//     const RALSeptMilleSeize = document.getElementById("RALSeptMilleSeize");
-//     const RALNeufMilleSeize = document.getElementById("RALNeufMilleSeize");
-//     const Champ = document.getElementById("Champ");
-//     const RALSeptMilleSeizeDeuxV = document.getElementById("RALSeptMilleSeizeDeuxV");
-//     const RALNeufMilleSeizeDeuxV = document.getElementById("RALNeufMilleSeizeDeuxV");
-//     const ChampDeuxV = document.getElementById("ChampDeuxV");
-  
-//     if (index >= 0 && index < Rendu3D.length) {
-//       imageAffichee.src = Rendu3D[index];
-//       imageAffichee.alt = "Image" + (index + 1);
-  
-//       switch (index) {
-//         case 0:
-//         case 6:
-//           titreColoris.textContent = "RAL 7016";
-//           RALSeptMilleSeize.classList.add("active");
-//           RALSeptMilleSeizeDeuxV.classList.add("active");
-//           RALNeufMilleSeize.classList.remove("active");
-//           RALNeufMilleSeizeDeuxV.classList.remove("active");
-//           Champ.classList.remove("active");
-//           ChampDeuxV.classList.remove("active");
-//           break;
-//         case 2:
-//         case 8:
-//           titreColoris.textContent = "RAL 9016";
-//           RALSeptMilleSeize.classList.remove("active");
-//           RALSeptMilleSeizeDeuxV.classList.remove("active");
-//           RALNeufMilleSeize.classList.add("active");
-//           RALNeufMilleSeizeDeuxV.classList.add("active");
-//           Champ.classList.remove("active");
-//           ChampDeuxV.classList.remove("active");
-//           break;
-//         case 4:
-//         case 10:
-//           titreColoris.textContent = "Champagne";
-//           RALSeptMilleSeize.classList.remove("active");
-//           RALSeptMilleSeizeDeuxV.classList.remove("active");
-//           RALNeufMilleSeize.classList.remove("active");
-//           RALNeufMilleSeizeDeuxV.classList.remove("active");
-//           Champ.classList.add("active");
-//           ChampDeuxV.classList.add("active");
-//           break;
-//         default:
-//           titreColoris.textContent = "";
-//       }
-//     }
-//   }
-  
-//   const boutonRALSeptMilleSeize = document.getElementById("RALSeptMilleSeize");
-//   const boutonRALNeufMilleSeize = document.getElementById("RALNeufMilleSeize");
-//   const boutonChamp = document.getElementById("Champ");
-//   const boutonRALSeptMilleSeizeDeuxV = document.getElementById("RALSeptMilleSeizeDeuxV");
-//   const boutonRALNeufMilleSeizeDeuxV = document.getElementById("RALNeufMilleSeizeDeuxV");
-//   const boutonChampDeuxV = document.getElementById("ChampDeuxV");
-  
-//   // Event listeners pour les boutons de choix de coloris
-//   boutonRALSeptMilleSeize.addEventListener("click", function() {
-//     divBoutonsPoigneesUnV7016.style.display = "block";
-//     divBoutonsPoigneesUnV9016.style.display = "none";
-//     divBoutonsPoigneesUnVChamp.style.display = "none";
-//     divBoutonsPoigneesDeuxV7016.style.display = "none";
-//     divBoutonsPoigneesDeuxV9016.style.display = "none";
-//     divBoutonsPoigneesDeuxVChamp.style.display = "none";
-//   });
-  
-//   boutonRALNeufMilleSeize.addEventListener("click", function() {
-//     divBoutonsPoigneesUnV7016.style.display = "none";
-//     divBoutonsPoigneesUnV9016.style.display = "block";
-//     divBoutonsPoigneesUnVChamp.style.display = "none";
-//     divBoutonsPoigneesDeuxV7016.style.display = "none";
-//     divBoutonsPoigneesDeuxV9016.style.display = "none";
-//     divBoutonsPoigneesDeuxVChamp.style.display = "none";
-//   });
-  
-//   boutonChamp.addEventListener("click", function() {
-//     divBoutonsPoigneesUnV7016.style.display = "none";
-//     divBoutonsPoigneesUnV9016.style.display = "none";
-//     divBoutonsPoigneesUnVChamp.style.display = "block";
-//     divBoutonsPoigneesDeuxV7016.style.display = "none";
-//     divBoutonsPoigneesDeuxV9016.style.display = "none";
-//     divBoutonsPoigneesDeuxVChamp.style.display = "none";
-//   });
-  
-//   boutonRALSeptMilleSeizeDeuxV.addEventListener("click", function() {
-//     divBoutonsPoigneesUnV7016.style.display = "none";
-//     divBoutonsPoigneesUnV9016.style.display = "none";
-//     divBoutonsPoigneesUnVChamp.style.display = "none";
-//     divBoutonsPoigneesDeuxV7016.style.display = "block";
-//     divBoutonsPoigneesDeuxV9016.style.display = "none";
-//     divBoutonsPoigneesDeuxVChamp.style.display = "none";
-//   });
-  
-//   boutonRALNeufMilleSeizeDeuxV.addEventListener("click", function() {
-//     divBoutonsPoigneesUnV7016.style.display = "none";
-//     divBoutonsPoigneesUnV9016.style.display = "none";
-//     divBoutonsPoigneesUnVChamp.style.display = "none";
-//     divBoutonsPoigneesDeuxV7016.style.display = "none";
-//     divBoutonsPoigneesDeuxV9016.style.display = "block";
-//     divBoutonsPoigneesDeuxVChamp.style.display = "none";
-//   });
-  
-//   boutonChampDeuxV.addEventListener("click", function() {
-//     divBoutonsPoigneesUnV7016.style.display = "none";
-//     divBoutonsPoigneesUnV9016.style.display = "none";
-//     divBoutonsPoigneesUnVChamp.style.display = "none";
-//     divBoutonsPoigneesDeuxV7016.style.display = "none";
-//     divBoutonsPoigneesDeuxV9016.style.display = "none";
-//     divBoutonsPoigneesDeuxVChamp.style.display = "block";
-//   });
+argent.addEventListener("click", function () {
+  sessionStorage.setItem("couleur", "argent")
+  rendreActif(argent)
+  rendreInactif(RAL7016)
+  rendreInactif(Champ)
+  rendreInactif(RAL7035)
+  rendreInactif(RAL9016)
+  modifierTexte (titreFinition, "Argent anodisé")
+  afficherImage();
+});
