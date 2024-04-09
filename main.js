@@ -29,15 +29,27 @@ const imgProduitPoignee = document.getElementById("imgProduitPoignee")
 const imgProduitArriere = document.getElementById("imgProduitArriere")
 const flecheG = document.getElementById("flecheG")
 const flecheD = document.getElementById("flecheD")
+const poigneesPrefal = document.getElementById("poigneesPrefal")
+const poigneesTechnal = document.getElementById("poigneesTechnal")
+const poigneePrefal1 = document.getElementById("poigneePrefal1")
+const poigneePrefal2 = document.getElementById("poigneePrefal2")
+const poigneeTechnal1 = document.getElementById("poigneeTechnal1")
+const poigneeTechnal2 = document.getElementById("poigneeTechnal2")
+const titrePoignee = document.getElementById("titrePoignee")
+
+
+let vueActuelle = "VueCote"; // Initialisation de la vue caméra de départ
+
 
 
 // Initialisation de l'application
 afficherImage()
 select1V.classList.add("active");
 FYM1V.classList.add("active");
-afficherElem ([modelesPrefal1V, modelesTechnal1V])
-masquerElem ([modelesPrefal2V,modelesTechnal2V])
+afficherElem ([modelesPrefal1V, modelesTechnal1V,poigneesTechnal])
+masquerElem ([modelesPrefal2V,modelesTechnal2V,poigneesPrefal])
 rendreActif (RAL7016)
+rendreActif (poigneeTechnal1)
 sessionStorage.setItem("cam","VueCote")
 sessionStorage.setItem("modele","modele1VFYM")
 sessionStorage.setItem("couleur","7016")
@@ -45,25 +57,31 @@ sessionStorage.setItem("poignee","poignee1")
 console.log(imgProduit.src)
 
 
-function afficherImage() {
-    // Récupérer les valeurs depuis sessionStorage
-    const modele = sessionStorage.getItem("modele") || "modele1VFYM"; // Valeur par défaut si non présente
-    const coloris = sessionStorage.getItem("couleur") || "7016"; // Valeur par défaut si non présente
-    const poignee = sessionStorage.getItem("poignee") || "poignee1"; // Valeur par défaut si non présente
-    const camera = sessionStorage.getItem("cam") || "VueCote"; // Valeur par défaut si non présente
-    
-  
-    // Construire le chemin de l'image en fonction des choix
-    const cheminImage = `Images/modeles/${modele}/${coloris}/${poignee+camera}.png`;
-    console.log(cheminImage)
-  
-    // Mettre à jour l'attribut src de l'image avec le chemin construit
-    imgProduit.src = cheminImage;
-    imgProduit.alt = `Fenêtre - Modèle: ${modele}, Coloris: ${coloris}, Poignée: ${poignee}, Cam: ${camera}`;
-    console.log(cheminImage)
-  }
 
+
+
+//--------------
+// LES FONCTIONS
+
+function afficherImage() {
+  // Récupérer les valeurs depuis sessionStorage
+  const modele = sessionStorage.getItem("modele") || "modele1VFYM"; // Valeur par défaut si non présente
+  const coloris = sessionStorage.getItem("couleur") || "7016"; // Valeur par défaut si non présente
+  const poignee = sessionStorage.getItem("poignee") || "poignee1"; // Valeur par défaut si non présente
+  const camera = sessionStorage.getItem("cam") || "VueCote"; // Valeur par défaut si non présente
   
+
+  // Construire le chemin de l'image en fonction des choix
+  const cheminImage = `Images/modeles/${modele}/${coloris}/${poignee+camera}.png`;
+  console.log(cheminImage)
+
+  // Mettre à jour l'attribut src de l'image avec le chemin construit
+  imgProduit.src = cheminImage;
+  imgProduit.alt = `Fenêtre - Modèle: ${modele}, Coloris: ${coloris}, Poignée: ${poignee}, Cam: ${camera}`;
+  console.log(cheminImage)
+}
+
+
 function rendreActif (elem) {
   elem.classList.add("active")
 }
@@ -86,26 +104,43 @@ function modifierTexte (titre, contenu) {
   titre.textContent = contenu ;
 }
 
-// function CameraFace (img) {
-//   const modele = sessionStorage.getItem("modele") || "modele1VFYM"; // Valeur par défaut si non présente
-//   const coloris = sessionStorage.getItem("couleur") || "7016"; // Valeur par défaut si non présente
-//   const poignee = sessionStorage.getItem("poignee") || "poignee1"; // Valeur par défaut si non présente
-//   const Camera = sessionStorage.getItem("cam") || "vueface"; // Valeur par défaut si non présente
-// }
+function changerVueDroite() {
+  if (vueActuelle === "VueCote") {
+    vueActuelle = "VueFace";
+  } else if (vueActuelle === "VueFace") {
+    vueActuelle = "VuePoignee";
+  } else if (vueActuelle === "VuePoignee") {
+    vueActuelle = "VueArriere";
+  } else {
+    vueActuelle = "VueCote"; // Si l'état est "VueArriere", revenir à "VueCote"
+  }
+  sessionStorage.setItem("cam", vueActuelle); // 
+  afficherImage(); // 
+}
 
-// Lorsque je clique sur les images/boutons :
-
-
-flecheD.addEventListener("click", function () {
-    sessionStorage.setItem("cam", "VueFace");
-    afficherImage()
-});
-
-
-flecheG.addEventListener("click", function () {
-  sessionStorage.setItem("cam", "VueCote");
+function changerVueGauche () {
+  if (vueActuelle === "VueArriere") {
+    vueActuelle = "VuePoignee";
+  } else if (vueActuelle === "VuePoignee") {
+    vueActuelle = "VueFace"
+  } else if (vueActuelle === "VueFace") {
+    vueActuelle = "VueCote"
+  } else {
+    vueActuelle = "VueArriere"
+  }
+  sessionStorage.setItem("cam", vueActuelle)
   afficherImage()
-});
+}
+
+
+
+
+//--------------
+// LES ECOUTEURS
+
+flecheD.addEventListener("click", changerVueDroite)
+
+flecheG.addEventListener("click", changerVueGauche)
 
 select1V.addEventListener("click", function () {
   sessionStorage.setItem("modele", "modele1VFYM");
@@ -122,6 +157,7 @@ select2V.addEventListener("click", function () {
   sessionStorage.setItem("modele", "modele2VFYM");
   rendreActif(select2V)
   rendreInactif(select1V)
+  rendreInactif(FYA2V)
   rendreActif(FYM2V)
   afficherElem ([modelesPrefal2V,modelesTechnal2V])
   masquerElem ([modelesPrefal1V, modelesTechnal1V])
@@ -142,6 +178,8 @@ FYM1V.addEventListener("click", function() {
   rendreInactif(cache2V)
   modifierTexte (titreModele, "Technal FYM")
   afficherImage();
+  afficherElem([poigneesTechnal])
+  masquerElem([poigneesPrefal])
 
 });
 
@@ -157,6 +195,8 @@ FYA1V.addEventListener("click", function() {
   rendreInactif(cache2V)
   modifierTexte (titreModele, "Technal FYA")
   afficherImage();
+  afficherElem([poigneesTechnal])
+  masquerElem([poigneesPrefal])
 
 });
 
@@ -172,6 +212,8 @@ FYM2V.addEventListener("click", function() {
   rendreInactif(cache2V)
   modifierTexte (titreModele, "Technal FYM")
   afficherImage();
+  afficherElem([poigneesTechnal])
+  masquerElem([poigneesPrefal])
 
 });
 
@@ -187,6 +229,8 @@ FYA2V.addEventListener("click", function() {
   rendreInactif(cache2V)
   modifierTexte (titreModele, "Technal FYA")
   afficherImage();
+  afficherElem([poigneesTechnal])
+  masquerElem([poigneesPrefal])
 
 });
 
@@ -202,6 +246,8 @@ visible1V.addEventListener("click", function() {
   rendreInactif(cache2V)
   modifierTexte (titreModele, "Prefal Visible")
   afficherImage();
+  afficherElem([poigneesPrefal])
+  masquerElem([poigneesTechnal])
 
 });
 
@@ -217,6 +263,8 @@ visible2V.addEventListener("click", function() {
   rendreInactif(cache2V)
   modifierTexte (titreModele, "Prefal Visible")
   afficherImage();
+  afficherElem([poigneesPrefal])
+  masquerElem([poigneesTechnal])
 
 });
 
@@ -232,6 +280,8 @@ cache1V.addEventListener("click", function() {
   rendreInactif(cache2V)
   modifierTexte (titreModele, "Prefal Caché")
   afficherImage();
+  afficherElem([poigneesPrefal])
+  masquerElem([poigneesTechnal])
 
 });
 
@@ -247,6 +297,8 @@ cache2V.addEventListener("click", function() {
   rendreInactif(cache1V)
   modifierTexte (titreModele, "Prefal Caché")
   afficherImage();
+  afficherElem([poigneesPrefal])
+  masquerElem([poigneesTechnal])
 
 });
 
@@ -305,3 +357,24 @@ argent.addEventListener("click", function () {
   modifierTexte (titreFinition, "Argent anodisé")
   afficherImage();
 });
+
+poigneeTechnal1.addEventListener("click", function () {
+sessionStorage.setItem("poignee", "poignee1")
+rendreActif(poigneeTechnal1)
+rendreInactif(poigneeTechnal2)
+rendreInactif(poigneePrefal1)
+rendreInactif(poigneePrefal2)
+modifierTexte (titrePoignee, "Poignée Carré Technal")
+  afficherImage();
+})
+
+poigneeTechnal2.addEventListener("click", function () {
+  sessionStorage.setItem("poignee", "poignee2")
+  rendreActif(poigneeTechnal2)
+  rendreInactif(poigneeTechnal1)
+  rendreInactif(poigneePrefal1)
+  rendreInactif(poigneePrefal2)
+  modifierTexte (titrePoignee, "Poignée Ronde Technal")
+  afficherImage();
+  })
+
