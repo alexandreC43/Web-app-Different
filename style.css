@@ -5,25 +5,28 @@
     font-family: "Inter", sans-serif;
     scrollbar-width: none;
 }
-header {
-    display: flex;
-    flex-direction: row;
-    gap: 70%;
-    justify-content: center;
-    padding-bottom: 50px;
-    border: 1px #c2c4c8 solid;
-}
-
 
 #vue-produit {
     background-color: #edece9;
-    height: 50%;
-    width: 800px;
+    width: 1013px;
+    height: 872px;
+    margin-top: 88px;
     padding-bottom: 120px;
     overflow: hidden; /* Cache le défilement */
 }
 
-#vue-options {
+#vueOptions {
+    height: 100%;
+    max-height: 1000px; 
+    width: 400px;
+    padding: 20px;
+    margin-top: 20px;
+    overflow-y: auto; /* Ajoute une barre de défilement verticale si nécessaire */
+    box-sizing: border-box;
+    scrollbar-width: none;
+}
+
+#vueRecap {
     height: 100%;
     max-height: 1000px; 
     width: 400px;
@@ -56,10 +59,15 @@ header {
 }
 
 #fleches img {
-    width: 4%;
-    margin-top: -20%;
+    width: 40px;
+    height: 40px;
+    margin-top: -300px;
     margin-bottom: 30%;
     margin-left: 3%;
+}
+
+#fleches img:hover {
+    scale: 110%;
 }
 
 img {
@@ -75,14 +83,6 @@ img {
 }
 
 
-#poignee img {
-    width: 30%;
-    margin-top: -3px;
-    margin-bottom: 1%;
-    border: 1px solid #d8d4d4;
-}
-
-
 h3, h2, h4 {
     display: flex;
     margin-top: 30px;
@@ -91,8 +91,21 @@ h3, h2, h4 {
     text-align: center;
 }
 
+h4 {
+    font-weight: 600;
+    font-size: 16px;
+}
+
 h3 {
     margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 30px;
+}
+
+h2 {
+    font-weight: 600;
+    font-size: 36px;
+    margin-top: 100px;
 }
 
 p {
@@ -104,12 +117,12 @@ p {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 4px;
+    gap: 8px;
 }
 
 #buttonColor button {
-    width: 30px;
-    height: 30px;
+    width: 48px;
+    height: 48px;
     /* display: inline-block; */
     cursor: pointer;
     border-radius: 100px;
@@ -126,7 +139,8 @@ p {
 }
 
 #Champ {
-    background-color: #eced81;
+    background-color: #D4CBAF;
+
 }
 
 #RAL7035 {
@@ -140,9 +154,9 @@ p {
 
 .active {
     scale: 115%;
-    -webkit-box-shadow: 0px 0px 1px 2px #f20707;
-    -moz-box-shadow: 0px 0px 1px 2px #f20707;
-    box-shadow: 0px 0px 1px 2px #f20707;
+    -webkit-box-shadow: 0px 0px 1px 4px #FA6B3B;
+    -moz-box-shadow: 0px 0px 1px 4px #FA6B3B;
+    box-shadow: 0px 0px 1px 4px #FA6B3B;
 }
 button {
     padding: 2px;
@@ -163,10 +177,11 @@ button {
 }
 
 #ouvertures img {
-        width: 35%;
-        /* margin-top: -3px; */
+        width: 144px;
+        height: 144px;
         margin-bottom: 1%;
-        border: 1px solid #d8d4d4;
+        border: 2px solid #F1F1EA;
+        border-radius: 8px;
         margin: auto;
         cursor: pointer;
 }
@@ -187,10 +202,11 @@ button {
 
 #modelesPrefal1V img, #modelesTechnal1V img, 
 #modelesTechnal2V img, #modelesPrefal2V img {
-        width: 35%;
-        /* margin-top: -3px; */
+        width: 144px;
+        height: 144px;
         margin-bottom: 1%;
-        border: 1px solid #d8d4d4;
+        border: 2px solid #F1F1EA;
+        border-radius: 8px;
         margin: auto;
         cursor: pointer;
 }
@@ -216,10 +232,12 @@ button {
 }
 
 #poigneesPrefal img, #poigneesTechnal img {
-    width: 35%;
+    width: 144px;
+    height: 144px;
     margin-top: -3px;
     margin-bottom: 1%;
-    border: 1px solid #d8d4d4;
+    border: 2px solid #F1F1EA;
+    border-radius: 8px;
     margin: auto;
     cursor: pointer;
     
@@ -231,13 +249,24 @@ button {
 }
 
 #save {
-    width: 200px;
-    height: 40px;
+    width: 382px;
+    height: 50px;
     background-color: #383e42;
     color: white;
     margin-bottom: 20px;
+    font-size: 16px
+}
+
+#save:hover {
+    background-color:#555a5e; ;
 }
 
 
-
+}
+#imageRecap {
+    width: 288px;
+    height: 344px;
+    margin-left: 40px;
+    margin-top: 40px;
+   
 }

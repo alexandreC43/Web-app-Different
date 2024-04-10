@@ -36,6 +36,10 @@ const poigneePrefal2 = document.getElementById("poigneePrefal2")
 const poigneeTechnal1 = document.getElementById("poigneeTechnal1")
 const poigneeTechnal2 = document.getElementById("poigneeTechnal2")
 const titrePoignee = document.getElementById("titrePoignee")
+const save = document.getElementById("save")
+const vueOptions = document.getElementById("vueOptions")
+const vueRecap = document.getElementById("vueRecap")
+const recapOptions = document.getElementById("recapOptions")
 
 
 let vueActuelle = "VueCote"; // Initialisation de la vue caméra de départ
@@ -55,6 +59,7 @@ sessionStorage.setItem("modele","modele1VFYM")
 sessionStorage.setItem("couleur","7016")
 sessionStorage.setItem("poignee","poignee1")
 console.log(imgProduit.src)
+masquerElem([vueRecap])
 
 
 
@@ -235,7 +240,7 @@ FYA2V.addEventListener("click", function() {
 });
 
 visible1V.addEventListener("click", function() {
-  sessionStorage.setItem("modele", "modele2VFYA");
+  sessionStorage.setItem("modele", "modele1Vvisible");
   rendreActif(visible1V)
   rendreInactif(FYM2V)
   rendreInactif(FYM1V)
@@ -252,7 +257,7 @@ visible1V.addEventListener("click", function() {
 });
 
 visible2V.addEventListener("click", function() {
-  sessionStorage.setItem("modele", "modele2VFYA");
+  sessionStorage.setItem("modele", "modele2Vvisible");
   rendreActif(visible2V)
   rendreInactif(FYM2V)
   rendreInactif(FYM1V)
@@ -269,7 +274,7 @@ visible2V.addEventListener("click", function() {
 });
 
 cache1V.addEventListener("click", function() {
-  sessionStorage.setItem("modele", "modele2VFYA");
+  sessionStorage.setItem("modele", "modele1Vcache");
   rendreActif(cache1V)
   rendreInactif(FYM2V)
   rendreInactif(FYM1V)
@@ -286,7 +291,7 @@ cache1V.addEventListener("click", function() {
 });
 
 cache2V.addEventListener("click", function() {
-  sessionStorage.setItem("modele", "modele2VFYA");
+  sessionStorage.setItem("modele", "modele2Vcache");
   rendreActif(cache2V)
   rendreInactif(FYM2V)
   rendreInactif(FYM1V)
@@ -378,3 +383,23 @@ poigneeTechnal2.addEventListener("click", function () {
   afficherImage();
   })
 
+ 
+
+  save.addEventListener("click", function() {
+    // Masquer la section "vue-options" et afficher "vue-recap"
+    vueOptions.style.display = "none"
+    vueRecap.style.display = "block";
+    
+// Récupérer les valeurs depuis le sessionStorage
+const modele = sessionStorage.getItem("modele") || "";
+const couleur = sessionStorage.getItem("couleur") || "";
+const poignee = sessionStorage.getItem("poignee") || "";
+
+// Afficher les données dans le récapitulatif
+recapOptions.innerHTML = `
+<img id ="imageRecap" src = ${imgProduit.src}>
+    <h3>Modèle:</h3> <p>${modele}</p>
+    <h3>Couleur:</h3> <p>${couleur}</p>
+    <h3>Poignée:</h3> <p>${poignee}</p>
+`;
+});
