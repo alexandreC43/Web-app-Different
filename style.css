@@ -7,18 +7,23 @@
 }
 
 #vue-produit {
+    display: flex;
     background-color: #edece9;
-    width: 1013px;
-    height: 872px;
-    margin-top: 88px;
-    padding-bottom: 120px;
+    width: 60%;
+    height: 100vh;
+    /* padding-bottom: 120px; */
     overflow: hidden; /* Cache le défilement */
+    align-items: center;
+    
+    
+    
+
 }
 
 #vueOptions {
     height: 100%;
     max-height: 1000px; 
-    width: 400px;
+    width: 40%;
     padding: 20px;
     margin-top: 20px;
     overflow-y: auto; /* Ajoute une barre de défilement verticale si nécessaire */
@@ -28,58 +33,67 @@
 
 #vueRecap {
     height: 100%;
-    max-height: 1000px; 
-    width: 400px;
+    width: 40%;
     padding: 20px;
+    padding-bottom: 200px;
     margin-top: 20px;
-    overflow-y: auto; /* Ajoute une barre de défilement verticale si nécessaire */
     box-sizing: border-box;
     scrollbar-width: none;
+    margin-bottom: 200px;
+    position: sticky; /* Utilisez "sticky" au lieu de "fixed" */
+    top: 0;
+    overflow-y: auto; /* Autorise le défilement vertical si le contenu dépasse la hauteur */
+    max-height: 100vh; /* Limitez la hauteur pour éviter le débordement */
+  
 }
+
+
 
 
 #page {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-  
+    position: fixed;
+     }
 
 #imageAffichee {
-    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items:center;
 }
 
-#fleches {
-    display: flex;
-    flex-direction: row;
-    gap: 83%;
+#imgProduit{
+    width: 60%;
+}
+
+
+#flecheG, #flecheD {
+    width: 40px;
+    height: 40px;
     cursor: pointer;
-    margin-top: -200px;
+    opacity: 80%;
     
 }
 
-#fleches img {
-    width: 40px;
-    height: 40px;
-    margin-top: -300px;
-    margin-bottom: 30%;
-    margin-left: 3%;
+#flecheG:hover, #flecheD:hover {
+    opacity: 100%;
+    scale: 105%;
+    
 }
 
-#fleches img:hover {
-    scale: 110%;
+#flecheG {
+    margin-left: 20px;
 }
+
+#flecheD {
+    margin-right: 20px;
+}
+
 
 img {
     width: 70%;
     transition: transform .1s;
-}
-
-#imgProduit{
-    width: 80%;
-    margin-left: 10%;
-    margin-top: 5%;
-    margin-bottom: 5%;
 }
 
 
@@ -127,6 +141,7 @@ p {
     cursor: pointer;
     border-radius: 100px;
     margin-bottom: 10px;
+    border: none;
     
 }
 
@@ -135,7 +150,7 @@ p {
 }
 
 #RAL9016 {
-    background-color: #ffffff;
+    background-color: #f7f7f7;
 }
 
 #Champ {
@@ -144,19 +159,18 @@ p {
 }
 
 #RAL7035 {
-    background-color: #bfc1be;
+    background-color: #BDBDBF;
 }
 
 #Argent {
-    background-color: #dadada;
+    background-color: #D9D9D9;
 }
 
 
 .active {
-    scale: 115%;
-    -webkit-box-shadow: 0px 0px 1px 4px #FA6B3B;
-    -moz-box-shadow: 0px 0px 1px 4px #FA6B3B;
-    box-shadow: 0px 0px 1px 4px #FA6B3B;
+    box-shadow: 0px 0px 1px 4px #FA6B3B; 
+    border-style: none;
+    
 }
 button {
     padding: 2px;
@@ -165,8 +179,8 @@ button {
 
 #typeOuverture {
         margin: auto;
-        margin-top: 50%;
-        margin-bottom: 50%;
+        margin-top: 20%;
+        margin-bottom: 25%;
 
 
 }
@@ -174,6 +188,7 @@ button {
         display: flex;
         justify-content: center;
         margin-top: 5px;
+        gap: 15px;
 }
 
 #ouvertures img {
@@ -182,14 +197,13 @@ button {
         margin-bottom: 1%;
         border: 2px solid #F1F1EA;
         border-radius: 8px;
-        margin: auto;
         cursor: pointer;
 }
 
 #typeModele {
         margin: auto;
-        margin-top: 50%;
-        margin-bottom: 50%;
+        margin-top: 15%;
+        margin-bottom: 25%;
 
 }
 
@@ -198,6 +212,7 @@ button {
         display: flex;
         justify-content: center;
         margin-top: 15px;
+        gap: 15px;
 }
 
 #modelesPrefal1V img, #modelesTechnal1V img, 
@@ -207,28 +222,27 @@ button {
         margin-bottom: 1%;
         border: 2px solid #F1F1EA;
         border-radius: 8px;
-        margin: auto;
         cursor: pointer;
 }
 
 #typeFinition {
         margin: auto;
-        margin-top: 50%;
-        margin-bottom: 50%;
+        margin-top: 15%;
+        margin-bottom: 25%;
 }
 
 #typePoignee {
-        margin: auto;
-        margin-top: 50%;
-        margin-bottom: 50%;
-    
-        
+        /* margin: auto; */
+        margin-top: 15%;
+        margin-bottom: 25%
+            
 }
 
 #poigneesPrefal, #poigneesTechnal {
     display: flex;
     justify-content: center;
     margin-top: 10px;
+    gap: 15px;
 }
 
 #poigneesPrefal img, #poigneesTechnal img {
@@ -238,7 +252,6 @@ button {
     margin-bottom: 1%;
     border: 2px solid #F1F1EA;
     border-radius: 8px;
-    margin: auto;
     cursor: pointer;
     
 }
@@ -246,6 +259,7 @@ button {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    
 }
 
 #save {
@@ -253,20 +267,45 @@ button {
     height: 50px;
     background-color: #383e42;
     color: white;
-    margin-bottom: 20px;
-    font-size: 16px
+    margin-bottom: 500px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 #save:hover {
-    background-color:#555a5e; ;
+    scale: 102%;
 }
 
 
-}
+
 #imageRecap {
     width: 288px;
     height: 344px;
     margin-left: 40px;
     margin-top: 40px;
    
+}
+
+
+@media(max-width:810px){
+    #page{
+        flex-direction: column;
+    }
+    #vue-produit{
+        width: 100%;
+        margin: 0px;
+        height: 20%;
+    }
+    #imgProduit{
+        width: 90%;
+    }
+    #vueOptions{
+        width: 100%;
+    }
+}
+
+#back {
+    width: 115px;
+    height: 52px;
+    cursor: pointer;
 }

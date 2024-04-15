@@ -40,6 +40,7 @@ const save = document.getElementById("save")
 const vueOptions = document.getElementById("vueOptions")
 const vueRecap = document.getElementById("vueRecap")
 const recapOptions = document.getElementById("recapOptions")
+const back = document.getElementById("back")
 
 
 let vueActuelle = "VueCote"; // Initialisation de la vue caméra de départ
@@ -383,23 +384,86 @@ poigneeTechnal2.addEventListener("click", function () {
   afficherImage();
   })
 
- 
+  poigneePrefal1.addEventListener("click", function () {
+    sessionStorage.setItem("poignee", "poignee1")
+    rendreActif(poigneePrefal1)
+    rendreInactif(poigneeTechnal1)
+    rendreInactif(poigneeTechnal2)
+    rendreInactif(poigneePrefal2)
+    modifierTexte (titrePoignee, "Poignée Cuadro Prefal")
+    afficherImage();
+    })
+  
+    poigneePrefal2.addEventListener("click", function () {
+      sessionStorage.setItem("poignee", "poignee2")
+      rendreActif(poigneePrefal2)
+      rendreInactif(poigneeTechnal1)
+      rendreInactif(poigneeTechnal2)
+      rendreInactif(poigneePrefal1)
+      modifierTexte (titrePoignee, "Poignée Rasata Prefal")
+      afficherImage();
+      })
+    
+
+
 
   save.addEventListener("click", function() {
     // Masquer la section "vue-options" et afficher "vue-recap"
     vueOptions.style.display = "none"
     vueRecap.style.display = "block";
+
+
+  back.addEventListener("click",function () {
+    vueOptions.style.display = "block"
+    vueRecap.style.display = "none";
+  })
     
 // Récupérer les valeurs depuis le sessionStorage
+let modeleRecap = titreModele.textContent || "";
+let couleurRecap = titreFinition.textContent || "";
+let poigneeRecap = titrePoignee.textContent || "";
+let marqueRecap = ""
+
 const modele = sessionStorage.getItem("modele") || "";
 const couleur = sessionStorage.getItem("couleur") || "";
-const poignee = sessionStorage.getItem("poignee") || "";
+const poignee = sessionStorage.getItem("poignee") || ""
+
 
 // Afficher les données dans le récapitulatif
 recapOptions.innerHTML = `
-<img id ="imageRecap" src = ${imgProduit.src}>
-    <h3>Modèle:</h3> <p>${modele}</p>
-    <h3>Couleur:</h3> <p>${couleur}</p>
-    <h3>Poignée:</h3> <p>${poignee}</p>
+<img id ="imageRecap" src = Images/modeles/${modele}/${couleur}/${poignee}VueCote.png>
+  
+    <h4>Modèle:</h4> <p>${modeleRecap}</p>
+    <h4>Couleur:</h4> <p>${couleurRecap}</p>
+    <h4>Poignée:</h4> <p>${poigneeRecap}</p>
 `;
 });
+
+ 
+
+
+//--------------
+// SCROLL CAM AUTO (DESACTIVER PR LE MOMENT)
+
+// Obtenez la position de l'élément "typePoignee"
+// const typePoignee = document.getElementById("typePoignee");
+// const positionTypePoignee = typePoignee.offsetTop;
+
+// vueOptions.addEventListener("scroll", function() {
+//     // position actuelle de la barre de défilement
+//     const scrollPosition = vueOptions.scrollTop;
+    
+//     // hauteur de la fenêtre visible
+//     const windowHeight = vueOptions.clientHeight;
+
+//     // Vérifiez si "typePoignee" est dans la fenetre visible
+//     if (scrollPosition + windowHeight >= positionTypePoignee) {
+//         // Changer la vue à "VuePoignee"
+//         sessionStorage.setItem("cam", "VuePoignee");
+//         afficherImage();}
+   
+// });
+
+
+
+
