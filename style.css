@@ -64,7 +64,7 @@
 }
 
 #imgProduit{
-    width: 60%;
+    width: 75%;
 }
 
 
@@ -180,7 +180,7 @@ button {
 #typeOuverture {
         margin: auto;
         margin-top: 20%;
-        margin-bottom: 25%;
+        margin-bottom: 35%;
 
 
 }
@@ -227,13 +227,13 @@ button {
 
 #typeFinition {
         margin: auto;
-        margin-top: 15%;
+        margin-top: 30%;
         margin-bottom: 25%;
 }
 
 #typePoignee {
         /* margin: auto; */
-        margin-top: 15%;
+        margin-top: 30%;
         margin-bottom: 25%
             
 }
@@ -294,10 +294,10 @@ button {
     #vue-produit{
         width: 100%;
         margin: 0px;
-        height: 20%;
+        height: 30%;
     }
     #imgProduit{
-        width: 90%;
+        width: 100%;
     }
     #vueOptions{
         width: 100%;
@@ -308,4 +308,8 @@ button {
     width: 115px;
     height: 52px;
     cursor: pointer;
+}
+
+#save {
+    margin-bottom:900px;
 }
