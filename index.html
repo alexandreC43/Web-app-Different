@@ -8,6 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,500&family=Inter:wght@100..900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
+
 </head>
 <body>
         <div id="page">
@@ -43,20 +46,20 @@
                         <h3>Modèle</h3>
                 
                         <div id="modelesTechnal1V">
-                            <img class="FYM1V" src="Images\FYM_Technal.png" alt="1 vantail Technal FYM">
-                            <img class="FYA1V" src="Images\FYA_Technal.png" alt="1 vantail Technal FYA">
+                            <img class="FYM1V" src="Images/FYM Technal Button.png" alt="1 vantail Technal FYM">
+                            <img class="FYA1V" src="Images/FYA Technal Button.png" alt="1 vantail Technal FYA">
                         </div>
                         <div id="modelesPrefal1V">
-                            <img class="visible1V" src="Images\Visible_Prefal.png" alt="1 vantail Prefal Visible">
-                            <img class="cache1V" src="Images/Cache_Prefal.png" alt="1 vantail Prefal Cache">
+                            <img class="visible1V" src="Images/Prefal Ouvrant visible Button.png" alt="1 vantail Prefal Visible">
+                            <img class="cache1V" src="Images/Prefal Ouvrant caché Button.png" alt="1 vantail Prefal Cache">
                         </div>
                         <div id="modelesTechnal2V">
-                            <img class="FYM2V" src="Images\FYM_Technal.png" alt="2 vantaux Technal FYM">
-                            <img class="FYA2V" src="Images\FYA_Technal.png"" alt="2 vantaux Technal FYA">
+                            <img class="FYM2V" src="Images/FYM Technal Button.png" alt="2 vantaux Technal FYM">
+                            <img class="FYA2V" src="Images/FYA Technal Button.png"" alt="2 vantaux Technal FYA">
                         </div>
                         <div id="modelesPrefal2V">
-                            <img class="visible2V" src="Images\Visible_Prefal.png" alt="2 vantaux Prefal Visible">
-                            <img class="cache2V" src="Images/Cache_Prefal.png" alt="2 vantaux Prefal Cache">
+                            <img class="visible2V" src="Images/Prefal Ouvrant visible Button.png" alt="2 vantaux Prefal Visible">
+                            <img class="cache2V" src="Images/Prefal Ouvrant caché Button.png" alt="2 vantaux Prefal Cache">
                         </div>
 
                         <h4 id="titreModele">Technal FYM</h4>
@@ -112,8 +115,31 @@
             <div id="recapOptions">
                 <!-- Ici apparaitra le recap des options générés dans le JS directement -->
             </div>
+            <div id="telecharger">
+                <img id= "buttonTelecharger" src="Images/Download.svg" alt="Télécharger">
+            </div>
+            <div id="titreDevis">
+                <h3 id="demandezVotreDevis">Demandez votre devis : </h3>
+                <p>(GRATUIT et sans engagement)</p>
+            </div>
+
+            <form id="contactForm">
+                <input type="text" id="nom" name="nom" placeholder="Nom" required>
+                <input type="text" id="prenom" name="prenom" placeholder="Prénom" required>
+                <input type="text" id="codePostal" name="codePostal" placeholder="Code Postal" required>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+                <input type="tel" id="telephone" name="telephone" placeholder="Téléphone" required>
+                <textarea id="descriptionProjet" name="descriptionProjet" placeholder="Description rapide de votre projet"></textarea>
+                <!-- <button type="submit" id="envoyer">Envoyer</button> -->
+                <input type="image" id="send" src="Images/send.svg" alt="Envoyer" />
+            </form>
+
+            <div id="contentPDF">
+                <!-- contenu généré dans le JS -->
+            </div>
         </section>
     </div>
+
 <script src="main.js"></script>
 </body>
 </html>

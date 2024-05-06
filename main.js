@@ -41,7 +41,7 @@ const vueOptions = document.getElementById("vueOptions")
 const vueRecap = document.getElementById("vueRecap")
 const recapOptions = document.getElementById("recapOptions")
 const back = document.getElementById("back")
-
+const contentPDF = document.getElementById("contentPDF")
 
 let vueActuelle = "VueCote"; // Initialisation de la vue caméra de départ
 
@@ -250,7 +250,7 @@ visible1V.addEventListener("click", function() {
   rendreInactif(visible2V)
   rendreInactif(cache1V)
   rendreInactif(cache2V)
-  modifierTexte (titreModele, "Prefal Visible")
+  modifierTexte (titreModele, "Prefal Ouvrant Visible")
   afficherImage();
   afficherElem([poigneesPrefal])
   masquerElem([poigneesTechnal])
@@ -267,7 +267,7 @@ visible2V.addEventListener("click", function() {
   rendreInactif(visible1V)
   rendreInactif(cache1V)
   rendreInactif(cache2V)
-  modifierTexte (titreModele, "Prefal Visible")
+  modifierTexte (titreModele, "Prefal Ouvrant Visible")
   afficherImage();
   afficherElem([poigneesPrefal])
   masquerElem([poigneesTechnal])
@@ -284,7 +284,7 @@ cache1V.addEventListener("click", function() {
   rendreInactif(visible2V)
   rendreInactif(visible1V)
   rendreInactif(cache2V)
-  modifierTexte (titreModele, "Prefal Caché")
+  modifierTexte (titreModele, "Prefal Ouvrant Caché")
   afficherImage();
   afficherElem([poigneesPrefal])
   masquerElem([poigneesTechnal])
@@ -301,7 +301,7 @@ cache2V.addEventListener("click", function() {
   rendreInactif(visible2V)
   rendreInactif(visible1V)
   rendreInactif(cache1V)
-  modifierTexte (titreModele, "Prefal Caché")
+  modifierTexte (titreModele, "Prefal Ouvrant Caché")
   afficherImage();
   afficherElem([poigneesPrefal])
   masquerElem([poigneesTechnal])
@@ -424,6 +424,9 @@ let couleurRecap = titreFinition.textContent || "";
 let poigneeRecap = titrePoignee.textContent || "";
 let marqueRecap = ""
 
+
+
+
 const modele = sessionStorage.getItem("modele") || "";
 const couleur = sessionStorage.getItem("couleur") || "";
 const poignee = sessionStorage.getItem("poignee") || ""
@@ -432,6 +435,7 @@ const poignee = sessionStorage.getItem("poignee") || ""
 // Afficher les données dans le récapitulatif
 recapOptions.innerHTML = `
 <img id ="imageRecap" src = Images/modeles/${modele}/${couleur}/${poignee}VueCote.png>
+
   
     <h4>Modèle:</h4> <p>${modeleRecap}</p>
     <h4>Couleur:</h4> <p>${couleurRecap}</p>
@@ -439,31 +443,104 @@ recapOptions.innerHTML = `
 `;
 });
 
- 
 
+let modeleRecap = titreModele.textContent || "";
+let couleurRecap = titreFinition.textContent || "";
+let poigneeRecap = titrePoignee.textContent || "";
+let marqueRecap = ""
 
-//--------------
-// SCROLL CAM AUTO (DESACTIVER PR LE MOMENT)
-
-// Obtenez la position de l'élément "typePoignee"
-// const typePoignee = document.getElementById("typePoignee");
-// const positionTypePoignee = typePoignee.offsetTop;
-
-// vueOptions.addEventListener("scroll", function() {
-//     // position actuelle de la barre de défilement
-//     const scrollPosition = vueOptions.scrollTop;
-    
-//     // hauteur de la fenêtre visible
-//     const windowHeight = vueOptions.clientHeight;
-
-//     // Vérifiez si "typePoignee" est dans la fenetre visible
-//     if (scrollPosition + windowHeight >= positionTypePoignee) {
-//         // Changer la vue à "VuePoignee"
-//         sessionStorage.setItem("cam", "VuePoignee");
-//         afficherImage();}
-   
-// });
+const modele = sessionStorage.getItem("modele") || "";
+const couleur = sessionStorage.getItem("couleur") || "";
+const poignee = sessionStorage.getItem("poignee") || ""
 
 
 
+contentPDF.innerHTML = `
+<h2>DIFFERENT</h2><br>
+<p>Vos fenêtres méritent de faire la différence.</p>
+<p>Contactez nous au 06.06.06.06.06 pour avoir plus d'informations.</p><br>
+<h4>Voici le récapitulatif de votre fenêtre :</h4>
+<p><b>Modèle :</b> ${modeleRecap}</p>
+<p><b>Finition :</b> ${titreFinition.textContent}</p>
+<p><b>Poignée :</b> ${titrePoignee.textContent}</p>
+<img id="imageRecap" src="Images/modeles/${modele}/${couleur}/${poignee}VueCote.png">
+<img id="imageRecap" src="Images/modeles/${modele}/${couleur}/${poignee}VueFace.png">
+<img id="imageRecap" src="Images/modeles/${modele}/${couleur}/${poignee}VuePoignee.png">
+<img id="imageRecap" src="Images/modeles/${modele}/${couleur}/${poignee}VueArriere.png">
+`;
 
+
+////FORMULAIRE////
+
+document.getElementById("contactForm").addEventListener("submit", function(event) {
+  event.preventDefault(); // Empêche l'envoi du formulaire par défaut
+
+  // Récupérez les données du formulaire
+  const formData = new FormData(this);
+
+  // Envoyez les données à Formspree via une requête Fetch POST
+  fetch("https://formspree.io/f/xleqzaoa", {
+      method: "POST",
+      body: formData,
+      headers: {
+          "Accept": "application/json"
+      }
+  })
+  .then(response => {
+      if (response.ok) {
+          alert("Formulaire soumis avec succès !");
+          // Réinitialiser le formulaire après l'envoi réussi
+          document.getElementById("contactForm").reset();
+      } else {
+          alert("Erreur lors de l'envoi du formulaire. Veuillez réessayer.");
+      }
+  })
+  .catch(error => {
+      console.error("Erreur lors de l'envoi du formulaire :", error);
+      alert("Une erreur est survenue. Veuillez réessayer.");
+  });
+});
+
+
+////GENERER LE PDF///////
+
+
+function telechargerPDF() {
+  // Récupérer les valeurs depuis le sessionStorage à l'intérieur de cette fonction
+  const modeleRecap = titreModele.textContent || "";
+  const couleurRecap = titreFinition.textContent || "";
+  const poigneeRecap = titrePoignee.textContent || "";
+  const modele = sessionStorage.getItem("modele") || "";
+  const couleur = sessionStorage.getItem("couleur") || "";
+  const poignee = sessionStorage.getItem("poignee") || "";
+
+  // Mettre à jour le contenu de la div contentPDF avec les nouvelles valeurs
+  contentPDF.innerHTML = `
+    <h2>DIFFERENT</h2><br>
+    <p>Vos fenêtres méritent de faire la différence.</p>
+    <p>Contactez nous au 06.06.06.06.06 pour avoir plus d'informations.</p><br>
+    <h4>Voici le récapitulatif de votre fenêtre :</h4>
+    <p><b>Modèle :</b> ${modeleRecap}</p>
+    <p><b>Finition :</b> ${couleurRecap}</p>
+    <p><b>Poignée :</b> ${poigneeRecap}</p>
+    <img id="imageRecap" src="Images/modeles/${modele}/${couleur}/${poignee}VueCote.png">
+    <img id="imageRecap" src="Images/modeles/${modele}/${couleur}/${poignee}VueFace.png">
+    <img id="imageRecap" src="Images/modeles/${modele}/${couleur}/${poignee}VuePoignee.png">
+    <img id="imageRecap" src="Images/modeles/${modele}/${couleur}/${poignee}VueArriere.png">
+  `;
+
+  // Afficher la div pour que son contenu puisse être rendu dans le PDF
+  contentPDF.style.display = 'block';
+
+  // Générer le PDF à partir du contenu de la div
+  html2pdf()
+    .from(contentPDF)
+    .save('recap_options.pdf')
+    .then(() => {
+      // Masquer la div après que le PDF ait été généré
+      contentPDF.style.display = 'none';
+    });
+}
+
+// Ajouter un écouteur d'événement au bouton de téléchargement
+document.getElementById('buttonTelecharger').addEventListener('click', telechargerPDF);
