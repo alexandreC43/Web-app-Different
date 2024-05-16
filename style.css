@@ -32,7 +32,7 @@
 }
 
 #vueRecap {
-       height: 100%;
+    height: 100%;
     width: 40%;
     padding: 20px;
     padding-bottom: 200px;
@@ -361,18 +361,55 @@ form textarea {
 
 #recapOptions {
     display: flex;
-    flex-direction: column
-    ;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    border: 1px solid #D6D5CB;
+    padding : 0px 20px 20px 20px;
+    padding-bottom: 0px;
+    margin-top: 20px;
+    border-bottom: none;
+
 }
 
 #contentPDF {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     margin-top: -10px;
     display: none;
+    padding: auto;
+    
+
+}
+
+#paragraphe1 {
+    margin-top: 20px;
+}
+
+#telecharger {
+    border: 1px solid #D6D5CB;
+    border-top: none;
+    padding: 20px;
+    padding-top: 50px;
+    margin-top: -10px;
+}
+
+table, caption, th, td {
+
+    border: 1px solid #D6D5CB;;
+    border-collapse: collapse;
+    padding: 8px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    
+    }
+
+#logoPDF {
+width: 133px;
+height: 18.74px;
+margin-top: 50px;
 
 }

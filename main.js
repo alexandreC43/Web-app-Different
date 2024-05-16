@@ -425,8 +425,6 @@ let poigneeRecap = titrePoignee.textContent || "";
 let marqueRecap = ""
 
 
-
-
 const modele = sessionStorage.getItem("modele") || "";
 const couleur = sessionStorage.getItem("couleur") || "";
 const poignee = sessionStorage.getItem("poignee") || ""
@@ -436,73 +434,38 @@ const poignee = sessionStorage.getItem("poignee") || ""
 recapOptions.innerHTML = `
 <img id ="imageRecap" src = Images/modeles/${modele}/${couleur}/${poignee}VueCote.png>
 
-  
-    <h4>Modèle:</h4> <p>${modeleRecap}</p>
-    <h4>Couleur:</h4> <p>${couleurRecap}</p>
-    <h4>Poignée:</h4> <p>${poigneeRecap}</p>
+<table>
+
+<colgroup>
+
+<col style="width:340px">
+
+<col>
+
+<col>
+
+</colgroup>
+
+<tr> <td>Modèle :  </td> <td width='45px'><b>${modeleRecap}</b></td> </tr> <br><br>
+<tr> <td>Couleur : </td> <td><b>${couleurRecap}</b></td> </tr><br>
+<tr> <td>Poignée : </td> <td><b>${poigneeRecap}</b></td> </tr>
+
+
+</table >
 `;
 });
 
-
-let modeleRecap = titreModele.textContent || "";
-let couleurRecap = titreFinition.textContent || "";
-let poigneeRecap = titrePoignee.textContent || "";
-let marqueRecap = ""
-
-const modele = sessionStorage.getItem("modele") || "";
-const couleur = sessionStorage.getItem("couleur") || "";
-const poignee = sessionStorage.getItem("poignee") || ""
-
-
-
-contentPDF.innerHTML = `
-<h2>DIFFERENT</h2><br>
-<p>Vos fenêtres méritent de faire la différence.</p>
-<p>Contactez nous au 06.06.06.06.06 pour avoir plus d'informations.</p><br>
-<h4>Voici le récapitulatif de votre fenêtre :</h4>
-<p><b>Modèle :</b> ${modeleRecap}</p>
-<p><b>Finition :</b> ${titreFinition.textContent}</p>
-<p><b>Poignée :</b> ${titrePoignee.textContent}</p>
-<img id="imageRecap" src="Images/modeles/${modele}/${couleur}/${poignee}VueCote.png">
-<img id="imageRecap" src="Images/modeles/${modele}/${couleur}/${poignee}VueFace.png">
-<img id="imageRecap" src="Images/modeles/${modele}/${couleur}/${poignee}VuePoignee.png">
-<img id="imageRecap" src="Images/modeles/${modele}/${couleur}/${poignee}VueArriere.png">
-`;
-
-
-////FORMULAIRE////
-
-document.getElementById("contactForm").addEventListener("submit", function(event) {
-  event.preventDefault(); // Empêche l'envoi du formulaire par défaut
-
-  // Récupérez les données du formulaire
-  const formData = new FormData(this);
-
-  // Envoyez les données à Formspree via une requête Fetch POST
-  fetch("https://formspree.io/f/xleqzaoa", {
-      method: "POST",
-      body: formData,
-      headers: {
-          "Accept": "application/json"
-      }
-  })
-  .then(response => {
-      if (response.ok) {
-          alert("Formulaire soumis avec succès !");
-          // Réinitialiser le formulaire après l'envoi réussi
-          document.getElementById("contactForm").reset();
-      } else {
-          alert("Erreur lors de l'envoi du formulaire. Veuillez réessayer.");
-      }
-  })
-  .catch(error => {
-      console.error("Erreur lors de l'envoi du formulaire :", error);
-      alert("Une erreur est survenue. Veuillez réessayer.");
-  });
-});
 
 
 ////GENERER LE PDF///////
+
+
+
+
+
+
+
+
 
 
 function telechargerPDF() {
@@ -516,26 +479,54 @@ function telechargerPDF() {
 
   // Mettre à jour le contenu de la div contentPDF avec les nouvelles valeurs
   contentPDF.innerHTML = `
-    <h2>DIFFERENT</h2><br>
-    <p>Vos fenêtres méritent de faire la différence.</p>
-    <p>Contactez nous au 06.06.06.06.06 pour avoir plus d'informations.</p><br>
-    <h4>Voici le récapitulatif de votre fenêtre :</h4>
-    <p><b>Modèle :</b> ${modeleRecap}</p>
-    <p><b>Finition :</b> ${couleurRecap}</p>
-    <p><b>Poignée :</b> ${poigneeRecap}</p>
-    <img id="imageRecap" src="Images/modeles/${modele}/${couleur}/${poignee}VueCote.png">
-    <img id="imageRecap" src="Images/modeles/${modele}/${couleur}/${poignee}VueFace.png">
-    <img id="imageRecap" src="Images/modeles/${modele}/${couleur}/${poignee}VuePoignee.png">
-    <img id="imageRecap" src="Images/modeles/${modele}/${couleur}/${poignee}VueArriere.png">
+    <div style="font-size: 10px; text-align: left;">
+      <img id="logoPDF" src="Images/LOGO 2.svg" style="width: 100px; display: block;"><br>
+      <p style="font-size: 12px;">Merci d’avoir configuré vos fenêtres avec Different ! Pour <br> obtenir un chiffrage précis de votre projet, ou pour être <br> accompagné, contactez nos équipes dès maintenant.</p>
+      <h4>Ma configuration Différent :</h4>
+    </div>
+    <table style="width: 514px; margin: 0 auto;">
+      <tr>
+        <td><img src="Images/modeles/${modele}/${couleur}/${poignee}VueCote.png" style="width: 150%; max-width: 200px;"></td>
+        <td><img src="Images/modeles/${modele}/${couleur}/${poignee}VueFace.png" style="width: 150%; max-width: 200px;"></td>
+      </tr>
+      <tr>
+        <td><img src="Images/modeles/${modele}/${couleur}/${poignee}VuePoignee.png" style="width: 150%; max-width: 200px;"></td>
+        <td><img src="Images/modeles/${modele}/${couleur}/${poignee}VueArriere.png" style="width: 150%; max-width: 200px;"></td>
+      </tr>
+    </table>
+    <table style="width: 514px; margin: 0 auto;">
+      <tr>
+        <td style="width: 80%;"><b>Modèle :</td>
+        <td style="width: 20%;"><b>${modeleRecap}</b></td>
+      </tr>
+      <tr>
+        <td style="width: 80%;">Finition :</td>
+        <td style="width: 20%;"><b>${couleurRecap}</b></td>
+      </tr>
+      <tr>
+        <td style="width: 80%;">Poignée :</td>
+        <td style="width: 20%;"><b>${poigneeRecap}</b></td>
+      </tr>
+    </table>
   `;
 
   // Afficher la div pour que son contenu puisse être rendu dans le PDF
   contentPDF.style.display = 'block';
 
+  // Options pour html2pdf
+  const opt = {
+    margin: [0.5, 0.5, 0.5, 0.5], // Marges réduites pour maximiser l'espace utilisable
+    filename: 'ma_configuration_different.pdf',
+    image: { type: 'jpeg', quality: 1.0 },
+    html2canvas: { scale: 6 },
+    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+  };
+
   // Générer le PDF à partir du contenu de la div
   html2pdf()
+    .set(opt)
     .from(contentPDF)
-    .save('recap_options.pdf')
+    .save()
     .then(() => {
       // Masquer la div après que le PDF ait été généré
       contentPDF.style.display = 'none';
