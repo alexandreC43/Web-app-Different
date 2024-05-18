@@ -435,23 +435,25 @@ recapOptions.innerHTML = `
 <img id ="imageRecap" src = Images/modeles/${modele}/${couleur}/${poignee}VueCote.png>
 
 <table>
+    <colgroup>
+      <col style="width: 400px;">
+      <col style="width: auto;">
+    </colgroup>
+    <tr>
+      <td style="width: 400px; text-align: left;">Modèle :</td>
+      <td style=" text-align: right;"><b>${modeleRecap}</b></td>
+    </tr>
+    <tr>
+      <td style="width: 400px; text-align: left;">Finition :</td>
+      <td style=" text-align: right;"><b>${couleurRecap}</b></td>
+    </tr>
+    <tr>
+      <td style="width: 400px; text-align: left;">Poignée :</td>
+      <td style=" text-align: right;"><b>${poigneeRecap}</b></td>
+    </tr>
+  </table>
 
-<colgroup>
 
-<col style="width:340px">
-
-<col>
-
-<col>
-
-</colgroup>
-
-<tr> <td>Modèle :  </td> <td width='45px'><b>${modeleRecap}</b></td> </tr> <br><br>
-<tr> <td>Couleur : </td> <td><b>${couleurRecap}</b></td> </tr><br>
-<tr> <td>Poignée : </td> <td><b>${poigneeRecap}</b></td> </tr>
-
-
-</table >
 `;
 });
 
@@ -479,36 +481,51 @@ function telechargerPDF() {
 
   // Mettre à jour le contenu de la div contentPDF avec les nouvelles valeurs
   contentPDF.innerHTML = `
-    <div style="font-size: 10px; text-align: left;">
-      <img id="logoPDF" src="Images/LOGO 2.svg" style="width: 100px; display: block;"><br>
-      <p style="font-size: 12px;">Merci d’avoir configuré vos fenêtres avec Different ! Pour <br> obtenir un chiffrage précis de votre projet, ou pour être <br> accompagné, contactez nos équipes dès maintenant.</p>
-      <h4>Ma configuration Différent :</h4>
+  <div style="margin-top: -50px;">
+    
+  <img id="logoPDF" src="Images/LOGO 2.svg" style="height: 22px; width: 250px display: block; margin-left: 70px;">
+      
     </div>
-    <table style="width: 514px; margin: 0 auto;">
-      <tr>
-        <td><img src="Images/modeles/${modele}/${couleur}/${poignee}VueCote.png" style="width: 150%; max-width: 200px;"></td>
-        <td><img src="Images/modeles/${modele}/${couleur}/${poignee}VueFace.png" style="width: 150%; max-width: 200px;"></td>
-      </tr>
-      <tr>
-        <td><img src="Images/modeles/${modele}/${couleur}/${poignee}VuePoignee.png" style="width: 150%; max-width: 200px;"></td>
-        <td><img src="Images/modeles/${modele}/${couleur}/${poignee}VueArriere.png" style="width: 150%; max-width: 200px;"></td>
-      </tr>
-    </table>
-    <table style="width: 514px; margin: 0 auto;">
-      <tr>
-        <td style="width: 80%;"><b>Modèle :</td>
-        <td style="width: 20%;"><b>${modeleRecap}</b></td>
-      </tr>
-      <tr>
-        <td style="width: 80%;">Finition :</td>
-        <td style="width: 20%;"><b>${couleurRecap}</b></td>
-      </tr>
-      <tr>
-        <td style="width: 80%;">Poignée :</td>
-        <td style="width: 20%;"><b>${poigneeRecap}</b></td>
-      </tr>
-    </table>
-  `;
+    <div style="margin-top: 40px; text-align: left; margin-left: 70px; width: 300px;">
+      <p style="font-size: 15px; text-align: left; font-weight: 600;">Ma configuration Différent</p>
+      <p style="font-size: 12px; font-weight: 400; text-align: left; margin-top : 10px;">Merci d’avoir configuré vos fenêtres avec Different ! Pour obtenir un chiffrage précis de votre projet, ou pour être accompagné, contactez nos équipes dès maintenant.</p>
+    </div>
+    <table style="width: 620px; margin-left: 70px; margin-top: 30px; margin-bottom: 30px; border-collapse: collapse; border: 1px solid #D6D5CB;">
+    <tr>
+      <td style="border: 1px solid #D6D5CB; padding: 0;"><img src="Images/modeles/${modele}/${couleur}/${poignee}VueCote.png" style="width: 260px; display: block;"></td>
+      <td style="border: 1px solid #D6D5CB; padding: 0;"><img src="Images/modeles/${modele}/${couleur}/${poignee}VueFace.png" style="width: 260px; display: block;"></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #D6D5CB; padding: 0;"><img src="Images/modeles/${modele}/${couleur}/${poignee}VuePoignee.png" style="width: 260px; display: block;"></td>
+      <td style="border: 1px solid #D6D5CB; padding: 0;"><img src="Images/modeles/${modele}/${couleur}/${poignee}VueArriere.png" style="width: 260px; display: block;"></td>
+    </tr>
+  </table>
+  
+    <table>
+    <table style="margin-left: 60px;">
+      <colgroup>
+      <col style="font-size:12px;">
+      </colgroup>
+    <tr>
+      <td style="width: 330px;text-align:left;">Modèle :</td>
+      <td style="width: 310px;font-weight:600;text-align:right;">${modeleRecap}</td>
+    </tr>
+    <tr>
+      <td style="width: 330px;text-align:left;">Finition :</td>
+      <td style="width: 310px;font-weight:600;text-align:right;">${couleurRecap}</td>
+    </tr>
+    <tr>
+      <td style="width: 330px;text-align:left;">Poignée :</td>
+      <td style="width: 310px;font-weight:600;text-align:right;">${poigneeRecap}</td>
+    </tr>
+  </table>
+
+  <div style="display:flex; flex-direction: row; justify-content: space-between; margin-top: 100px">
+    <p>01 89 70 52 92</p>
+    <p>contact@different-projet.com</p>
+    <p>www.different-fenetre.com</p>
+    </div>
+    `;
 
   // Afficher la div pour que son contenu puisse être rendu dans le PDF
   contentPDF.style.display = 'block';
@@ -528,7 +545,7 @@ function telechargerPDF() {
     .from(contentPDF)
     .save()
     .then(() => {
-      // Masquer la div après que le PDF ait été généré
+  // Masquer la div après que le PDF ait été généré
       contentPDF.style.display = 'none';
     });
 }

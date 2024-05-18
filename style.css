@@ -398,7 +398,7 @@ form textarea {
 
 table, caption, th, td {
 
-    border: 1px solid #D6D5CB;;
+    border: 1px solid #D6D5CB;
     border-collapse: collapse;
     padding: 8px;
     border-top: none;
@@ -412,4 +412,8 @@ width: 133px;
 height: 18.74px;
 margin-top: 50px;
 
+}
+
+#buttonTelecharger {
+    width: 600px;
 }
