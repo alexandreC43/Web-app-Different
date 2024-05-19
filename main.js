@@ -21,6 +21,7 @@ const RAL7016 = document.getElementById("RAL7016")
 const RAL9016 = document.getElementById("RAL9016")
 const Champ = document.getElementById("Champ")
 const RAL7035 = document.getElementById("RAL7035")
+const RAL9005 = document.getElementById("RAL9005")
 const argent = document.getElementById("argent")
 const titreFinition = document.getElementById("titreFinition")
 const imgProduit = document.getElementById("imgProduit");
@@ -317,6 +318,7 @@ RAL7016.addEventListener("click", function () {
   rendreInactif(Champ)
   rendreInactif(RAL7035)
   rendreInactif(argent)
+  rendreInactif(RAL9005)
   modifierTexte (titreFinition, "RAL 7016")
 });
 
@@ -327,6 +329,7 @@ RAL9016.addEventListener("click", function () {
   rendreInactif(Champ)
   rendreInactif(RAL7035)
   rendreInactif(argent)
+  rendreInactif(RAL9005)
   modifierTexte (titreFinition, "RAL 9016")
   afficherImage();
 });
@@ -338,6 +341,7 @@ Champ.addEventListener("click", function () {
   rendreInactif(RAL9016)
   rendreInactif(RAL7035)
   rendreInactif(argent)
+  rendreInactif(RAL9005)
   modifierTexte (titreFinition, "Champagne anodisé")
   afficherImage();
 });
@@ -349,9 +353,23 @@ RAL7035.addEventListener("click", function () {
   rendreInactif(Champ)
   rendreInactif(argent)
   rendreInactif(RAL9016)
+  rendreInactif(RAL9005)
   modifierTexte (titreFinition, "RAL 7035")
   afficherImage();
 });
+
+RAL9005.addEventListener("click", function () {
+  sessionStorage.setItem("couleur", "9005")
+  rendreActif(RAL9005)
+  rendreInactif(RAL7016)
+  rendreInactif(Champ)
+  rendreInactif(argent)
+  rendreInactif(RAL9016)
+  rendreInactif(RAL7035)
+  modifierTexte (titreFinition, "RAL 9005")
+  afficherImage();
+});
+
 
 argent.addEventListener("click", function () {
   sessionStorage.setItem("couleur", "argent")
@@ -360,6 +378,7 @@ argent.addEventListener("click", function () {
   rendreInactif(Champ)
   rendreInactif(RAL7035)
   rendreInactif(RAL9016)
+  rendreInactif(RAL9005)
   modifierTexte (titreFinition, "Argent anodisé")
   afficherImage();
 });
@@ -384,15 +403,15 @@ poigneeTechnal2.addEventListener("click", function () {
   afficherImage();
   })
 
-  poigneePrefal1.addEventListener("click", function () {
-    sessionStorage.setItem("poignee", "poignee1")
-    rendreActif(poigneePrefal1)
-    rendreInactif(poigneeTechnal1)
-    rendreInactif(poigneeTechnal2)
-    rendreInactif(poigneePrefal2)
-    modifierTexte (titrePoignee, "Poignée Cuadro Prefal")
-    afficherImage();
-    })
+poigneePrefal1.addEventListener("click", function () {
+  sessionStorage.setItem("poignee", "poignee1")
+  rendreActif(poigneePrefal1)
+  rendreInactif(poigneeTechnal1)
+  rendreInactif(poigneeTechnal2)
+  rendreInactif(poigneePrefal2)
+  modifierTexte (titrePoignee, "Poignée Cuadro Prefal")
+  afficherImage();
+  })
   
     poigneePrefal2.addEventListener("click", function () {
       sessionStorage.setItem("poignee", "poignee2")
@@ -461,15 +480,6 @@ recapOptions.innerHTML = `
 
 ////GENERER LE PDF///////
 
-
-
-
-
-
-
-
-
-
 function telechargerPDF() {
   // Récupérer les valeurs depuis le sessionStorage à l'intérieur de cette fonction
   const modeleRecap = titreModele.textContent || "";
@@ -478,6 +488,14 @@ function telechargerPDF() {
   const modele = sessionStorage.getItem("modele") || "";
   const couleur = sessionStorage.getItem("couleur") || "";
   const poignee = sessionStorage.getItem("poignee") || "";
+
+
+  // Fonction pour obtenir la date actuelle
+  function getCurrentDate() {
+    const date = new Date();
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString('fr-FR', options);
+  }
 
   // Mettre à jour le contenu de la div contentPDF avec les nouvelles valeurs
   contentPDF.innerHTML = `
@@ -489,6 +507,9 @@ function telechargerPDF() {
     <div style="margin-top: 40px; text-align: left; margin-left: 70px; width: 300px;">
       <p style="font-size: 15px; text-align: left; font-weight: 600;">Ma configuration Différent</p>
       <p style="font-size: 12px; font-weight: 400; text-align: left; margin-top : 10px;">Merci d’avoir configuré vos fenêtres avec Different ! Pour obtenir un chiffrage précis de votre projet, ou pour être accompagné, contactez nos équipes dès maintenant.</p>
+    </div>
+    <div style="margin-top: 10px; text-align: left;">
+      <p style="font-size: 12px; margin-left : -485px; font-weight: 400;">Le : <i>${getCurrentDate()}</i>, </p>
     </div>
     <table style="width: 620px; margin-left: 70px; margin-top: 30px; margin-bottom: 30px; border-collapse: collapse; border: 1px solid #D6D5CB;">
     <tr>
@@ -520,7 +541,7 @@ function telechargerPDF() {
     </tr>
   </table>
 
-  <div style="display:flex; flex-direction: row; justify-content: space-between; margin-top: 100px">
+  <div style="display:flex; flex-direction: row; justify-content: space-between; margin-top: 80px">
     <p>01 89 70 52 92</p>
     <p>contact@different-projet.com</p>
     <p>www.different-fenetre.com</p>
