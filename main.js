@@ -541,7 +541,7 @@ function telechargerPDF() {
     </tr>
   </table>
 
-  <div style="display:flex; flex-direction: row; justify-content: space-between; margin-top: 80px">
+  <div style="display:flex; flex-direction: row; justify-content: space-between; margin-top: 70px">
     <p>01 89 70 52 92</p>
     <p>contact@different-projet.com</p>
     <p>www.different-fenetre.com</p>
