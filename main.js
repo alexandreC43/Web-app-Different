@@ -43,6 +43,9 @@ const vueRecap = document.getElementById("vueRecap")
 const recapOptions = document.getElementById("recapOptions")
 const back = document.getElementById("back")
 const contentPDF = document.getElementById("contentPDF")
+const paragrapheSelect = document.getElementById("paragrapheSelect")
+const sousTitreOuverture = document.getElementById("sousTitreOuverture")
+
 
 let vueActuelle = "VueCote"; // Initialisation de la vue caméra de départ
 
@@ -157,6 +160,8 @@ select1V.addEventListener("click", function () {
   afficherElem ([modelesPrefal1V, modelesTechnal1V])
   masquerElem ([modelesPrefal2V,modelesTechnal2V])
   modifierTexte (titreOuverture, "1 vantail")
+  modifierTexte (paragrapheSelect, "Ouverture à la française, et oscillo-battante possible.")
+  modifierTexte (sousTitreOuverture, "Fenêtre à Frappe")
   afficherImage();
 });
 
@@ -169,6 +174,8 @@ select2V.addEventListener("click", function () {
   afficherElem ([modelesPrefal2V,modelesTechnal2V])
   masquerElem ([modelesPrefal1V, modelesTechnal1V])
   modifierTexte (titreOuverture, "2 vantaux")
+  modifierTexte (paragrapheSelect, "Ouverture à la française, et oscillo-battante possible sur un ouvrant.")
+  modifierTexte (sousTitreOuverture, "Fenêtre à Frappe")
   afficherImage();
   
 });

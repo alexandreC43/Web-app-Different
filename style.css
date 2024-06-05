@@ -421,3 +421,13 @@ margin-top: 50px;
 #buttonTelecharger {
     width: 600px;
 }
+
+#texteOuverture {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#sousTitreOuverture {
+    font-size: medium;
+}
