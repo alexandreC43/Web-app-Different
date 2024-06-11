@@ -35,7 +35,7 @@
     height: 100%;
     width: 40%;
     padding: 20px;
-    padding-bottom: 200px;
+    padding-bottom: 400px;
     margin-top: 20px;
     box-sizing: border-box;
     scrollbar-width: none;
@@ -64,7 +64,7 @@
 }
 
 #imgProduit{
-    width: 75%;
+    width: 95%;
 }
 
 
@@ -171,7 +171,7 @@ p {
 }
 
 
-.active {
+.active, .fixe {
     box-shadow: 0px 0px 1px 4px #FA6B3B; 
     border-style: none;
     
@@ -211,16 +211,18 @@ button {
 
 }
 
-#modelesPrefal1V, #modelesTechnal1V, 
-#modelesPrefal2V, #modelesTechnal2V {
+#modeles1V,
+#modeles2V,
+#modeleFixe {
         display: flex;
         justify-content: center;
         margin-top: 15px;
         gap: 15px;
 }
 
-#modelesPrefal1V img, #modelesTechnal1V img, 
-#modelesTechnal2V img, #modelesPrefal2V img {
+#modeles1V img, 
+#modeles2V img,
+#modeleFixe img {
         width: 144px;
         height: 144px;
         margin-bottom: 1%;
@@ -228,6 +230,12 @@ button {
         border-radius: 8px;
         cursor: pointer;
 }
+
+
+
+
+
+
 
 #typeFinition {
         margin: auto;
@@ -242,14 +250,14 @@ button {
             
 }
 
-#poigneesPrefal, #poigneesTechnal {
+#poigneesPrefal, #poigneesTechnal, #sansPoignee {
     display: flex;
     justify-content: center;
     margin-top: 10px;
     gap: 15px;
 }
 
-#poigneesPrefal img, #poigneesTechnal img {
+#poigneesPrefal img, #poigneesTechnal img, #sansPoignee img {
     width: 144px;
     height: 144px;
     margin-top: -3px;
@@ -283,29 +291,46 @@ button {
 
 
 #imageRecap {
-    width: 288px;
-    height: 344px;
-    margin-left: 40px;
-    margin-top: 40px;
+    width: 100%;
+    height: 100%;
+    margin : 10px;
    
 }
 
 
 @media(max-width:810px){
     #page{
-        flex-direction: column;
+        /* flex-direction: column; */
+        margin-left: -39px;
+        
+        
     }
     #vue-produit{
-        width: 100%;
-        margin: 0px;
+        width: 83%;
+        margin-left: 0px;
         height: 30%;
     }
     #imgProduit{
         width: 100%;
     }
-    #vueOptions{
+    #vueOptions, #vueRecap{
         width: 100%;
+        
+    #ouvertures {
+        display: block;
     }
+
+    #ouvertures img {
+        width: 30%;
+    }
+
+
+    #vueOptions {
+        margin: 0;
+    }
+        
+    }
+
 }
 
 #back {
@@ -314,8 +339,8 @@ button {
     cursor: pointer;
 }
 
-#save {
-    margin-bottom:900px;
+#save{
+    margin: bottom 600px;
 }
 
 
@@ -357,6 +382,11 @@ form textarea {
 #titreDevis {
     margin-top: 100px;
     margin-bottom: 50px;
+}
+
+#sousTitreDevis {
+    margin-top: 14px;
+    font-size: medium;
 }
 
 #demandezVotreDevis {
@@ -419,15 +449,19 @@ margin-top: 50px;
 }
 
 #buttonTelecharger {
-    width: 600px;
+    width: 100%
 }
 
-#texteOuverture {
+#texteOuverture, #texteModele {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 16px;
 }
 
-#sousTitreOuverture {
+#sousTitreOuverture, #sousTitreModele, #paragraphePoignee {
     font-size: medium;
+}
+
+#paragraphePoignee {
+    margin-bottom: 14px;
 }

@@ -1,20 +1,21 @@
 // On récupère les élements HTML
 const select1V = document.querySelector(".select1V");
 const select2V = document.querySelector(".select2V");
+const selectFixe = document.querySelector(".selectFixe");
 const divButtonColor = document.getElementById("buttonColor");
 const divButtonColorDeuxV = document.getElementById("buttonColorDeuxV");
 const titreOuverture = document.getElementById("titreOuverture");
 const titreModele = document.getElementById("titreModele");
-const modelesPrefal1V = document.getElementById("modelesPrefal1V")
-const modelesPrefal2V = document.getElementById("modelesPrefal2V")
-const modelesTechnal1V = document.getElementById("modelesTechnal1V")
-const modelesTechnal2V = document.getElementById("modelesTechnal2V")
+const modeleFixe = document.getElementById("modeleFixe");
+const modeles1V = document.getElementById("modeles1V");
+const modeles2V = document.getElementById("modeles2V");
+const modelesTechnal1V = document.getElementById("modelesTechnal1V");
+const modelesTechnal2V = document.getElementById("modelesTechnal2V");
+const fixe = document.getElementById("fixe")
 const FYM1V = document.querySelector(".FYM1V");
-const FYM2V = document.querySelector(".FYM2V")
-const FYA1V = document.querySelector(".FYA1V")
-const FYA2V = document.querySelector(".FYA2V")
-const visible1V = document.querySelector(".visible1V")
-const visible2V = document.querySelector(".visible2V")
+const FYM2V = document.querySelector(".FYM2V");
+const FYA1V = document.querySelector(".FYA1V");
+const FYA2V = document.querySelector(".FYA2V");
 const cache1V = document.querySelector(".cache1V")
 const cache2V = document.querySelector(".cache2V")
 const RAL7016 = document.getElementById("RAL7016")
@@ -30,6 +31,7 @@ const imgProduitPoignee = document.getElementById("imgProduitPoignee")
 const imgProduitArriere = document.getElementById("imgProduitArriere")
 const flecheG = document.getElementById("flecheG")
 const flecheD = document.getElementById("flecheD")
+const sansPoignee = document.getElementById("sansPoignee")
 const poigneesPrefal = document.getElementById("poigneesPrefal")
 const poigneesTechnal = document.getElementById("poigneesTechnal")
 const poigneePrefal1 = document.getElementById("poigneePrefal1")
@@ -37,6 +39,7 @@ const poigneePrefal2 = document.getElementById("poigneePrefal2")
 const poigneeTechnal1 = document.getElementById("poigneeTechnal1")
 const poigneeTechnal2 = document.getElementById("poigneeTechnal2")
 const titrePoignee = document.getElementById("titrePoignee")
+const sousTitrePoignee = document.getElementById("sousTitrePoignee")
 const save = document.getElementById("save")
 const vueOptions = document.getElementById("vueOptions")
 const vueRecap = document.getElementById("vueRecap")
@@ -55,8 +58,8 @@ let vueActuelle = "VueCote"; // Initialisation de la vue caméra de départ
 afficherImage()
 select1V.classList.add("active");
 FYM1V.classList.add("active");
-afficherElem ([modelesPrefal1V, modelesTechnal1V,poigneesTechnal])
-masquerElem ([modelesPrefal2V,modelesTechnal2V,poigneesPrefal])
+afficherElem ([modeles1V, poigneesTechnal])
+masquerElem ([modeles2V,modeleFixe, poigneesPrefal, sansPoignee])
 rendreActif (RAL7016)
 rendreActif (poigneeTechnal1)
 sessionStorage.setItem("cam","VueCote")
@@ -111,7 +114,7 @@ function masquerElem (elem) {
 } }
 
 function modifierTexte (titre, contenu) {
-  titre.textContent = contenu ;
+  titre.innerHTML = contenu ;
 }
 
 function changerVueDroite() {
@@ -152,13 +155,30 @@ flecheD.addEventListener("click", changerVueDroite)
 
 flecheG.addEventListener("click", changerVueGauche)
 
+selectFixe.addEventListener("click", function () {
+  sessionStorage.setItem("modele", "modeleFixeTechnal");
+  afficherImage("modeleFixeTechnal", "7016", "poignee1");
+  rendreActif(selectFixe)
+  rendreInactif(select2V)
+  rendreInactif(select1V)
+  afficherElem ([modeleFixe, sansPoignee])
+  masquerElem ([modeles2V, modeles1V, poigneesPrefal, poigneesTechnal])
+  modifierTexte (titreOuverture, "Fixe")
+  modifierTexte (paragrapheSelect, "Favorise un clair de jour important.")
+  modifierTexte (sousTitreOuverture, "Fenêtre à Chassis Fixe.")
+  modifierTexte (titrePoignee, "")
+  modifierTexte(sousTitrePoignee, "")
+  afficherImage();
+});
+
 select1V.addEventListener("click", function () {
   sessionStorage.setItem("modele", "modele1VFYM");
   afficherImage("modele1VFYM", "7016", "poignee1");
   rendreActif(select1V)
   rendreInactif(select2V)
-  afficherElem ([modelesPrefal1V, modelesTechnal1V])
-  masquerElem ([modelesPrefal2V,modelesTechnal2V])
+  rendreInactif(selectFixe)
+  afficherElem ([modeles1V, poigneesTechnal])
+  masquerElem ([modeles2V,modeleFixe, sansPoignee])
   modifierTexte (titreOuverture, "1 vantail")
   modifierTexte (paragrapheSelect, "Ouverture à la française, et oscillo-battante possible.")
   modifierTexte (sousTitreOuverture, "Fenêtre à Frappe")
@@ -169,10 +189,11 @@ select2V.addEventListener("click", function () {
   sessionStorage.setItem("modele", "modele2VFYM");
   rendreActif(select2V)
   rendreInactif(select1V)
-  rendreInactif(FYA2V)
+  rendreInactif(selectFixe)
+  // rendreInactif(FYA2V)
   rendreActif(FYM2V)
-  afficherElem ([modelesPrefal2V,modelesTechnal2V])
-  masquerElem ([modelesPrefal1V, modelesTechnal1V])
+  afficherElem ([modeles2V, poigneesTechnal])
+  masquerElem ([modeles1V, modeleFixe, sansPoignee])
   modifierTexte (titreOuverture, "2 vantaux")
   modifierTexte (paragrapheSelect, "Ouverture à la française, et oscillo-battante possible sur un ouvrant.")
   modifierTexte (sousTitreOuverture, "Fenêtre à Frappe")
@@ -186,11 +207,10 @@ FYM1V.addEventListener("click", function() {
   rendreInactif(FYM2V)
   rendreInactif(FYA1V)
   rendreInactif(FYA2V)
-  rendreInactif(visible1V)
-  rendreInactif(visible2V)
   rendreInactif(cache1V)
   rendreInactif(cache2V)
   modifierTexte (titreModele, "Technal FYM")
+  modifierTexte (sousTitrePoignee, "Design sobre et élégant. Prise en main ergonomique. <br> Une version à clé pour plus de sécurité est disponible.")
   afficherImage();
   afficherElem([poigneesTechnal])
   masquerElem([poigneesPrefal])
@@ -203,11 +223,10 @@ FYA1V.addEventListener("click", function() {
   rendreInactif(FYM2V)
   rendreInactif(FYM1V)
   rendreInactif(FYA2V)
-  rendreInactif(visible1V)
-  rendreInactif(visible2V)
   rendreInactif(cache1V)
   rendreInactif(cache2V)
   modifierTexte (titreModele, "Technal FYA")
+  modifierTexte (sousTitrePoignee, "Design sobre et élégant. Prise en main ergonomique. <br> Une version à clé pour plus de sécurité est disponible.")
   afficherImage();
   afficherElem([poigneesTechnal])
   masquerElem([poigneesPrefal])
@@ -220,11 +239,10 @@ FYM2V.addEventListener("click", function() {
   rendreInactif(FYM1V)
   rendreInactif(FYA1V)
   rendreInactif(FYA2V)
-  rendreInactif(visible1V)
-  rendreInactif(visible2V)
   rendreInactif(cache1V)
   rendreInactif(cache2V)
   modifierTexte (titreModele, "Technal FYM")
+  modifierTexte (sousTitrePoignee, "Design sobre et élégant. Prise en main ergonomique. <br> Une version à clé pour plus de sécurité est disponible.")
   afficherImage();
   afficherElem([poigneesTechnal])
   masquerElem([poigneesPrefal])
@@ -237,50 +255,18 @@ FYA2V.addEventListener("click", function() {
   rendreInactif(FYM2V)
   rendreInactif(FYM1V)
   rendreInactif(FYA1V)
-  rendreInactif(visible1V)
-  rendreInactif(visible2V)
   rendreInactif(cache1V)
   rendreInactif(cache2V)
   modifierTexte (titreModele, "Technal FYA")
+  modifierTexte (sousTitrePoignee, "Design sobre et élégant. Prise en main ergonomique. <br> Une version à clé pour plus de sécurité est disponible.")
   afficherImage();
   afficherElem([poigneesTechnal])
   masquerElem([poigneesPrefal])
 
 });
 
-visible1V.addEventListener("click", function() {
-  sessionStorage.setItem("modele", "modele1Vvisible");
-  rendreActif(visible1V)
-  rendreInactif(FYM2V)
-  rendreInactif(FYM1V)
-  rendreInactif(FYA1V)
-  rendreInactif(FYA2V)
-  rendreInactif(visible2V)
-  rendreInactif(cache1V)
-  rendreInactif(cache2V)
-  modifierTexte (titreModele, "Prefal Ouvrant Visible")
-  afficherImage();
-  afficherElem([poigneesPrefal])
-  masquerElem([poigneesTechnal])
 
-});
 
-visible2V.addEventListener("click", function() {
-  sessionStorage.setItem("modele", "modele2Vvisible");
-  rendreActif(visible2V)
-  rendreInactif(FYM2V)
-  rendreInactif(FYM1V)
-  rendreInactif(FYA1V)
-  rendreInactif(FYA2V)
-  rendreInactif(visible1V)
-  rendreInactif(cache1V)
-  rendreInactif(cache2V)
-  modifierTexte (titreModele, "Prefal Ouvrant Visible")
-  afficherImage();
-  afficherElem([poigneesPrefal])
-  masquerElem([poigneesTechnal])
-
-});
 
 cache1V.addEventListener("click", function() {
   sessionStorage.setItem("modele", "modele1Vcache");
@@ -289,10 +275,8 @@ cache1V.addEventListener("click", function() {
   rendreInactif(FYM1V)
   rendreInactif(FYA1V)
   rendreInactif(FYA2V)
-  rendreInactif(visible2V)
-  rendreInactif(visible1V)
   rendreInactif(cache2V)
-  modifierTexte (titreModele, "Prefal Ouvrant Caché")
+  modifierTexte (titreModele, "Prefal Allure")
   afficherImage();
   afficherElem([poigneesPrefal])
   masquerElem([poigneesTechnal])
@@ -306,10 +290,8 @@ cache2V.addEventListener("click", function() {
   rendreInactif(FYM1V)
   rendreInactif(FYA1V)
   rendreInactif(FYA2V)
-  rendreInactif(visible2V)
-  rendreInactif(visible1V)
   rendreInactif(cache1V)
-  modifierTexte (titreModele, "Prefal Ouvrant Caché")
+  modifierTexte (titreModele, "Prefal Allure")
   afficherImage();
   afficherElem([poigneesPrefal])
   masquerElem([poigneesTechnal])
@@ -396,7 +378,8 @@ rendreActif(poigneeTechnal1)
 rendreInactif(poigneeTechnal2)
 rendreInactif(poigneePrefal1)
 rendreInactif(poigneePrefal2)
-modifierTexte (titrePoignee, "Poignée Carré Technal")
+modifierTexte (titrePoignee, "Poignée Sélection Carrée")
+modifierTexte (sousTitrePoignee, "Design sobre et élégant. Prise en main ergonomique. <br> Une version à clé pour plus de sécurité est disponible.") 
   afficherImage();
 })
 
@@ -406,7 +389,8 @@ poigneeTechnal2.addEventListener("click", function () {
   rendreInactif(poigneeTechnal1)
   rendreInactif(poigneePrefal1)
   rendreInactif(poigneePrefal2)
-  modifierTexte (titrePoignee, "Poignée Ronde Technal")
+  modifierTexte (titrePoignee, "Poignée Sélection Ronde")
+  modifierTexte (sousTitrePoignee, "Design sobre et élégant. Prise en main ergonomique. <br> Une version à clé pour plus de sécurité est disponible.") 
   afficherImage();
   })
 
@@ -416,19 +400,21 @@ poigneePrefal1.addEventListener("click", function () {
   rendreInactif(poigneeTechnal1)
   rendreInactif(poigneeTechnal2)
   rendreInactif(poigneePrefal2)
-  modifierTexte (titrePoignee, "Poignée Cuadro Prefal")
+  modifierTexte (titrePoignee, "Poignée Toulon")
+  modifierTexte(sousTitrePoignee, "Mécanisme anti-infraction, Design contemporain.<br> Coloris Noir, Blanc, 7016. Aspect Inox et à la teinte <br> en option.")
   afficherImage();
   })
   
-    poigneePrefal2.addEventListener("click", function () {
-      sessionStorage.setItem("poignee", "poignee2")
-      rendreActif(poigneePrefal2)
-      rendreInactif(poigneeTechnal1)
-      rendreInactif(poigneeTechnal2)
-      rendreInactif(poigneePrefal1)
-      modifierTexte (titrePoignee, "Poignée Rasata Prefal")
-      afficherImage();
-      })
+  poigneePrefal2.addEventListener("click", function () {
+    sessionStorage.setItem("poignee", "poignee2")
+    rendreActif(poigneePrefal2)
+    rendreInactif(poigneeTechnal1)
+    rendreInactif(poigneeTechnal2)
+    rendreInactif(poigneePrefal1)
+    modifierTexte (titrePoignee, "Poignée Rasata")
+    modifierTexte(sousTitrePoignee,"Design épuré dernière génération. Coloris Noir,<br> Blanc, 7016. Aspect Inox et à la teinte en option")
+    afficherImage();
+    })
     
 
 
@@ -508,24 +494,24 @@ function telechargerPDF() {
   contentPDF.innerHTML = `
   <div style="margin-top: -50px;">
     
-  <img id="logoPDF" src="Images/LOGO 2.svg" style="height: 22px; width: 250px display: block; margin-left: 70px;">
+  <img id="logoPDF" src="Images/LOGO 2.svg" style="width: 30% display: block; margin-left: 70px;">
       
     </div>
-    <div style="margin-top: 40px; text-align: left; margin-left: 70px; width: 300px;">
+    <div style="margin-top: 20px; text-align: left; margin-left: 70px; width: 635px;">
       <p style="font-size: 15px; text-align: left; font-weight: 600;">Ma configuration Différent</p>
       <p style="font-size: 12px; font-weight: 400; text-align: left; margin-top : 10px;">Merci d’avoir configuré vos fenêtres avec Different ! Pour obtenir un chiffrage précis de votre projet, ou pour être accompagné, contactez nos équipes dès maintenant.</p>
     </div>
     <div style="margin-top: 10px; text-align: left;">
       <p style="font-size: 12px; margin-left : -485px; font-weight: 400;">Le : <i>${getCurrentDate()}</i>, </p>
     </div>
-    <table style="width: 620px; margin-left: 70px; margin-top: 30px; margin-bottom: 30px; border-collapse: collapse; border: 1px solid #D6D5CB;">
+    <table style="width: 620px; margin-left: 70px; margin-top: 20px; margin-bottom: 30px; border-collapse: collapse; border: 1px solid #D6D5CB;">
     <tr>
-      <td style="border: 1px solid #D6D5CB; padding: 0;"><img src="Images/modeles/${modele}/${couleur}/${poignee}VueCote.png" style="width: 260px; display: block;"></td>
-      <td style="border: 1px solid #D6D5CB; padding: 0;"><img src="Images/modeles/${modele}/${couleur}/${poignee}VueFace.png" style="width: 260px; display: block;"></td>
+      <td style="border: 1px solid #303030; padding: 0;"><img src="Images/modeles/${modele}/${couleur}/${poignee}VueCote.png" style="width: 100%; display: block;"></td>
+      <td style="border: 1px solid #303030; padding: 0;"><img src="Images/modeles/${modele}/${couleur}/${poignee}VueFace.png" style="width: 100%; display: block;"></td>
     </tr>
     <tr>
-      <td style="border: 1px solid #D6D5CB; padding: 0;"><img src="Images/modeles/${modele}/${couleur}/${poignee}VuePoignee.png" style="width: 260px; display: block;"></td>
-      <td style="border: 1px solid #D6D5CB; padding: 0;"><img src="Images/modeles/${modele}/${couleur}/${poignee}VueArriere.png" style="width: 260px; display: block;"></td>
+      <td style="border: 1px solid #303030; padding: 0;"><img src="Images/modeles/${modele}/${couleur}/${poignee}VuePoignee.png" style="width: 100%; display: block;"></td>
+      <td style="border: 1px solid #303030; padding: 0;"><img src="Images/modeles/${modele}/${couleur}/${poignee}VueArriere.png" style="width: 100%; display: block;"></td>
     </tr>
   </table>
   
@@ -548,7 +534,8 @@ function telechargerPDF() {
     </tr>
   </table>
 
-  <div style="display:flex; flex-direction: row; justify-content: space-between; margin-top: 70px">
+  <div style="display:flex; flex-direction: row; justify-content: space-between; margin-top: 30px; margin-left: 62px;width:635
+  px;">
     <p>01 89 70 52 92</p>
     <p>contact@different-projet.com</p>
     <p>www.different-fenetre.com</p>
