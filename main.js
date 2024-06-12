@@ -498,7 +498,7 @@ function telechargerPDF() {
       
     </div>
     <div style="margin-top: 20px; text-align: left; margin-left: 70px; width: 635px;">
-      <p style="font-size: 15px; text-align: left; font-weight: 600;">Ma configuration Différent</p>
+      <p style="font-size: 15px; text-align: left; font-weight: 600;">Ma configuration Different</p>
       <p style="font-size: 12px; font-weight: 400; text-align: left; margin-top : 10px;">Merci d’avoir configuré vos fenêtres avec Different ! Pour obtenir un chiffrage précis de votre projet, ou pour être accompagné, contactez nos équipes dès maintenant.</p>
     </div>
     <div style="margin-top: 10px; text-align: left;">

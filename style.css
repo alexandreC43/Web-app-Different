@@ -33,7 +33,7 @@
 
 #vueRecap {
     height: 100%;
-    width: 40%;
+    width: 30%;
     padding: 20px;
     padding-bottom: 400px;
     margin-top: 20px;
@@ -108,7 +108,7 @@ h3, h2, h4 {
 
 h4 {
     font-weight: 600;
-    font-size: 16px;
+    font-size: 17px;
 }
 
 h3 {
@@ -331,6 +331,11 @@ button {
     #vueOptions {
         margin: 0;
     }
+
+    #save {
+        margin: bottom 900px;
+    }
+    
         
     }
 
@@ -343,7 +348,7 @@ button {
 }
 
 #save{
-    margin: bottom 600px;
+    margin: bottom 200px;
 }
 
 
@@ -422,7 +427,16 @@ form textarea {
 }
 
 #paragraphe1 {
-    margin-top: 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding-right: 40px;
+    padding-left : 40px;
+    
+}
+
+#paragraphe1 p {
+    font-size: 15px;
+    
 }
 
 #telecharger {
@@ -462,9 +476,14 @@ margin-top: 50px;
 }
 
 #sousTitreOuverture, #sousTitreModele, #paragraphePoignee {
-    font-size: medium;
+    font-size: 17px;
 }
 
 #paragraphePoignee {
     margin-bottom: 14px;
+}
+
+#paragrapheSelect {
+font-size: 15px;
+
 }
